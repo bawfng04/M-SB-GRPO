@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-04-20T08:41:25Z",
+  "datasets": {
+    "math_l3_l5_train": {
+      "source": "huggingface",
+      "hf_id": "TianHongZXY/MATH",
+      "config": null,
+      "split": "train",
+      "row_count": 5586,
+      "sha256": "5bffbf119648bb30fef736b45d8ffeda9702a7f1d2ba0703a1988557063c8a3b",
+      "local_path": "data/datasets/requested/train/math_l3_l5_train.parquet"
+    },
+    "gsm8k_train": {
+      "source": "huggingface",
+      "hf_id": "openai/gsm8k",
+      "config": "main",
+      "split": "train",
+      "row_count": 7473,
+      "sha256": "1b36f4b6f7ba5fefe52200adbe1eff5a4934553454b73098ab82c3dbc5e4cd75",
+      "local_path": "data/datasets/requested/train/gsm8k_train.parquet"
+    },
+    "math500_test": {
+      "source": "huggingface",
+      "hf_id": "HuggingFaceH4/MATH-500",
+      "config": null,
+      "split": "test",
+      "row_count": 500,
+      "sha256": "5c660feb1ae4e7ec93c56f33ac477c1342a5b407deebde6dd1578390977547bd",
+      "local_path": "data/datasets/requested/test/math500_test.parquet"
+    },
+    "aime2025_test": {
+      "source": "huggingface",
+      "hf_id": "TianHongZXY/AIME2025",
+      "config": null,
+      "split": "test",
+      "row_count": 30,
+      "sha256": "5bfedf22d6eaf727d7521c35a845eaeca14e2d719edc480d01be617945b5fced",
+      "local_path": "data/datasets/requested/test/aime2025_test.parquet"
+    },
+    "olympiadbench_test": {
+      "source": "huggingface",
+      "hf_id": "Hothan/OlympiadBench",
+      "config": "OE_TO_maths_en_COMP",
+      "split": "train",
+      "row_count": 674,
+      "sha256": "579499cc47f84f0c5b384d58452efbdb35f7278da8c1174cf882eb41bd6d21d9",
+      "local_path": "data/datasets/requested/test/olympiadbench_test.parquet"
+    },
+    "combined_train": {
+      "source": "composed",
+      "row_count": 13059,
+      "sha256": "ea834189f7d98f96c734dffe0bdf2e25db28d4594e2970aa904d2c0f98b3c1bd",
+      "local_path": "data/datasets/requested/train/combined_train.parquet"
+    },
+    "combined_test": {
+      "source": "composed",
+      "row_count": 1204,
+      "sha256": "8b468740afc431afb752d45e9ef9c696480cff707f90592ff7199516f7ceb007",
+      "local_path": "data/datasets/requested/test/combined_test.parquet"
+    }
+  }
+}

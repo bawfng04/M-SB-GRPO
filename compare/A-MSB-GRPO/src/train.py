@@ -24,10 +24,12 @@ import gc
 import json
 import logging
 import math
+import time
 from typing import Dict, List, Optional, Any
 
 import torch
 import numpy as np
+from tqdm import tqdm
 
 from src.amsb_loss import (
     amsb_grpo_loss,
@@ -867,14 +869,42 @@ class AMSBGRPOTrainer:
         self.training_engine.init_model()
         self.training_engine.init_deepspeed()
 
-        for epoch in range(num_epochs):
+        total_steps = num_epochs * len(dataset)
+        train_start_time = time.time()
+
+        # ---- Epoch Progress Bar ----
+        epoch_pbar = tqdm(
+            range(num_epochs),
+            desc="🔄 Epochs",
+            unit="epoch",
+            position=0,
+            leave=True,
+            colour="blue",
+            bar_format="{l_bar}{bar:30}{r_bar}",
+        )
+
+        for epoch in epoch_pbar:
+            epoch_pbar.set_description(f"🔄 Epoch {epoch+1}/{num_epochs}")
             logger.info(f"\n{'='*40} EPOCH {epoch+1}/{num_epochs} {'='*40}")
 
-            for idx, sample in enumerate(dataset):
+            epoch_losses = []
+            epoch_start_time = time.time()
+
+            # ---- Prompt Progress Bar ----
+            prompt_pbar = tqdm(
+                enumerate(dataset),
+                total=len(dataset),
+                desc="  📝 Training",
+                unit="prompt",
+                position=1,
+                leave=False,
+                colour="green",
+                bar_format="{l_bar}{bar:30}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}] {postfix}",
+            )
+
+            for idx, sample in prompt_pbar:
                 prompt = sample["prompt"]
                 ground_truth = sample["answer"]
-
-                logger.info(f"\n--- Prompt {idx+1}/{len(dataset)} ---")
 
                 # ---- Layer 1: Generate ----
                 layer1_groups = self._run_layer1(
@@ -886,16 +916,56 @@ class AMSBGRPOTrainer:
                 # ---- Dynamic Routing & Train ----
                 metrics = self.train_on_prompt(prompt, ground_truth, layer1_samples)
 
+                # ---- Cập nhật Progress Bar ----
+                epoch_losses.append(metrics["total_loss"])
+                avg_loss = sum(epoch_losses) / len(epoch_losses)
+
+                # Tính thời gian ước tính còn lại
+                elapsed = time.time() - train_start_time
+                completed_steps = epoch * len(dataset) + idx + 1
+                if completed_steps > 0:
+                    eta_seconds = (elapsed / completed_steps) * (total_steps - completed_steps)
+                    eta_min = int(eta_seconds // 60)
+                    eta_sec = int(eta_seconds % 60)
+                    eta_str = f"{eta_min}m{eta_sec:02d}s"
+                else:
+                    eta_str = "N/A"
+
+                prompt_pbar.set_postfix({
+                    "loss": f"{metrics['total_loss']:.4f}",
+                    "avg_loss": f"{avg_loss:.4f}",
+                    "route": metrics.get('routing', 'N/A'),
+                    "scale": f"{metrics.get('entropy_scale', 0):.3f}",
+                    "ETA_total": eta_str,
+                }, refresh=True)
+
                 # Periodic checkpoint
                 if (self.global_step % 100 == 0) and (self.global_step > 0):
                     self._save_checkpoint(epoch, self.global_step)
 
+            prompt_pbar.close()
+
+            # ---- Epoch Summary ----
+            epoch_time = time.time() - epoch_start_time
+            epoch_avg_loss = sum(epoch_losses) / len(epoch_losses) if epoch_losses else 0
+            epoch_pbar.set_postfix({
+                "avg_loss": f"{epoch_avg_loss:.4f}",
+                "time": f"{epoch_time/60:.1f}min",
+            }, refresh=True)
+
+            logger.info(f"Epoch {epoch+1} complete | Avg Loss: {epoch_avg_loss:.4f} | "
+                        f"Time: {epoch_time/60:.1f} min")
+
             # End epoch checkpoint
             self._save_checkpoint(epoch, self.global_step)
 
+        epoch_pbar.close()
+
+        total_time = time.time() - train_start_time
         logger.info("\n" + "=" * 60)
-        logger.info("Training Complete!")
+        logger.info("✅ Training Complete!")
         logger.info(f"Total steps: {self.global_step}")
+        logger.info(f"Total time: {total_time/60:.1f} min ({total_time/3600:.2f} hours)")
         self._save_metrics()
 
     def _save_checkpoint(self, epoch: int, step: int):

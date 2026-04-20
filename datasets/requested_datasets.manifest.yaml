@@ -1,0 +1,51 @@
+version: 1.0.0
+generated: '2026-04-20'
+datasets:
+- id: math_l3_l5_train
+  split_role: train
+  source: huggingface
+  hf_id: TianHongZXY/MATH
+  config: null
+  split: train
+  size: 5586
+  local_path: data/datasets/requested/train/math_l3_l5_train.parquet
+  skipped_rows_missing_mapping: 0
+- id: gsm8k_train
+  split_role: train
+  source: huggingface
+  hf_id: openai/gsm8k
+  config: main
+  split: train
+  size: 7473
+  local_path: data/datasets/requested/train/gsm8k_train.parquet
+  skipped_rows_missing_mapping: 0
+- id: math500_test
+  split_role: test
+  source: huggingface
+  hf_id: HuggingFaceH4/MATH-500
+  config: null
+  split: test
+  size: 500
+  local_path: data/datasets/requested/test/math500_test.parquet
+  skipped_rows_missing_mapping: 0
+- id: aime2025_test
+  split_role: test
+  source: huggingface
+  hf_id: TianHongZXY/AIME2025
+  config: null
+  split: test
+  size: 30
+  local_path: data/datasets/requested/test/aime2025_test.parquet
+  skipped_rows_missing_mapping: 0
+- id: olympiadbench_test
+  split_role: test
+  source: huggingface
+  hf_id: Hothan/OlympiadBench
+  config: OE_TO_maths_en_COMP
+  split: train
+  size: 674
+  local_path: data/datasets/requested/test/olympiadbench_test.parquet
+  skipped_rows_missing_mapping: 0
+combined:
+  train: data/datasets/requested/train/combined_train.parquet
+  test: data/datasets/requested/test/combined_test.parquet

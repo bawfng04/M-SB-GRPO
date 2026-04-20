@@ -1,0 +1,52 @@
+{
+  "runtime_profile": "local-dryrun",
+  "method": "vanilla",
+  "num_generations": 8,
+  "num_questions": 16,
+  "datasets": {
+    "math_500": {
+      "records": 128,
+      "questions": 16,
+      "metrics": {
+        "pass@1": 0.6171875,
+        "pass@2": 0.8437499999999999,
+        "pass@4": 0.9580357142857143,
+        "pass@8": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun/math_500.jsonl"
+    },
+    "gsm8k": {
+      "records": 128,
+      "questions": 16,
+      "metrics": {
+        "pass@1": 0.6171875,
+        "pass@2": 0.8549107142857143,
+        "pass@4": 0.9839285714285715,
+        "pass@8": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun/gsm8k.jsonl"
+    },
+    "aime24": {
+      "records": 128,
+      "questions": 16,
+      "metrics": {
+        "pass@1": 0.625,
+        "pass@2": 0.8482142857142857,
+        "pass@4": 0.9607142857142857,
+        "pass@8": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun/aime24.jsonl"
+    },
+    "amc23": {
+      "records": 128,
+      "questions": 16,
+      "metrics": {
+        "pass@1": 0.5859375,
+        "pass@2": 0.8325892857142855,
+        "pass@4": 0.9741071428571428,
+        "pass@8": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun/amc23.jsonl"
+    }
+  }
+}

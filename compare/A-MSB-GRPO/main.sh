@@ -7,6 +7,9 @@
 #   1. Chuẩn bị dataset (download & convert to parquet)
 #   2. Cài đặt dependencies
 #   3. Huấn luyện mô hình
+
+
+
 #
 # Cách dùng:
 #   chmod +x main.sh
@@ -14,6 +17,7 @@
 #   ./main.sh --skip-data        # Bỏ qua bước tải dataset (đã tải trước đó)
 #   ./main.sh --debug            # Chế độ debug: 5 mẫu, không DeepSpeed
 #   ./main.sh --dry-run          # Chỉ in lệnh, không chạy
+#   ./main.sh --skip-data --skip-install # đã có data và library
 # ==============================================================================
 
 set -euo pipefail
@@ -34,7 +38,7 @@ TEST_PARQUET="${DATASET_ROOT}/test/combined_test.parquet"
 PIPELINE_DIR="${SCRIPT_DIR}"
 TRAIN_SCRIPT="${PIPELINE_DIR}/run_train.py"
 DS_CONFIG="${PIPELINE_DIR}/configs/ds_config_zero3.json"
-REQUIREMENTS="${PIPELINE_DIR}/requirements.txt"
+REQUIREMENTS="${REPO_ROOT}/requirements.txt"
 OUTPUT_DIR="${PIPELINE_DIR}/checkpoints"
 LOG_DIR="${PIPELINE_DIR}/logs"
 
