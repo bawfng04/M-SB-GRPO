@@ -1,0 +1,63 @@
+{
+  "benchmark": "benchmark-dryrun-amsb",
+  "datasets": {
+    "aime2025": {
+      "dataset": "aime2025",
+      "total_records": 32,
+      "total_questions": 8,
+      "total_correct": 18,
+      "accuracy": 0.5625,
+      "pass_at_k": {
+        "pass@1": 0.5625,
+        "pass@2": 0.8541666666666666,
+        "pass@4": 1.0
+      },
+      "method": "amsb"
+    },
+    "gsm8k": {
+      "dataset": "gsm8k",
+      "total_records": 32,
+      "total_questions": 8,
+      "total_correct": 21,
+      "accuracy": 0.65625,
+      "pass_at_k": {
+        "pass@1": 0.65625,
+        "pass@2": 0.8541666666666666,
+        "pass@4": 1.0
+      },
+      "method": "amsb"
+    },
+    "math500": {
+      "dataset": "math500",
+      "total_records": 32,
+      "total_questions": 8,
+      "total_correct": 23,
+      "accuracy": 0.71875,
+      "pass_at_k": {
+        "pass@1": 0.71875,
+        "pass@2": 0.8958333333333334,
+        "pass@4": 1.0
+      },
+      "method": "amsb"
+    },
+    "olympiadbench": {
+      "dataset": "olympiadbench",
+      "total_records": 32,
+      "total_questions": 8,
+      "total_correct": 21,
+      "accuracy": 0.65625,
+      "pass_at_k": {
+        "pass@1": 0.65625,
+        "pass@2": 0.8958333333333334,
+        "pass@4": 1.0
+      },
+      "method": "amsb"
+    }
+  },
+  "overall": {
+    "method": "amsb",
+    "total_correct": 83,
+    "total_records": 128,
+    "overall_accuracy": 0.6484375
+  }
+}

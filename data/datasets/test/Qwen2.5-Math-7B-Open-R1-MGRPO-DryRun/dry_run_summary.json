@@ -1,0 +1,22 @@
+{
+  "runtime_profile": "local-dryrun",
+  "method": "mgrpo",
+  "dry_run": true,
+  "dry_run_skip_train": true,
+  "train_split": "train",
+  "train_samples": 32,
+  "reward_funcs": [
+    "accuracy",
+    "format",
+    "tag_count"
+  ],
+  "method_diagnostics": {
+    "method": "mgrpo",
+    "train_guiding_phrase_count": 2,
+    "train_layer2_prompt_count": 32,
+    "test_guiding_phrase_count": 2,
+    "test_layer2_prompt_count": 32
+  },
+  "hub_model_id": "Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun",
+  "output_dir": "data/Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun"
+}

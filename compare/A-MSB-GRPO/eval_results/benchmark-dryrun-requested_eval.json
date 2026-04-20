@@ -1,0 +1,59 @@
+{
+  "benchmark": "benchmark-dryrun-requested",
+  "datasets": {
+    "aime2025": {
+      "dataset": "aime2025",
+      "total_records": 4,
+      "total_questions": 2,
+      "total_correct": 3,
+      "accuracy": 0.75,
+      "pass_at_k": {
+        "pass@1": 0.75,
+        "pass@2": 1.0
+      },
+      "method": "vanilla"
+    },
+    "gsm8k": {
+      "dataset": "gsm8k",
+      "total_records": 4,
+      "total_questions": 2,
+      "total_correct": 2,
+      "accuracy": 0.5,
+      "pass_at_k": {
+        "pass@1": 0.5,
+        "pass@2": 1.0
+      },
+      "method": "vanilla"
+    },
+    "math500": {
+      "dataset": "math500",
+      "total_records": 4,
+      "total_questions": 2,
+      "total_correct": 1,
+      "accuracy": 0.25,
+      "pass_at_k": {
+        "pass@1": 0.25,
+        "pass@2": 0.5
+      },
+      "method": "vanilla"
+    },
+    "olympiadbench": {
+      "dataset": "olympiadbench",
+      "total_records": 4,
+      "total_questions": 2,
+      "total_correct": 2,
+      "accuracy": 0.5,
+      "pass_at_k": {
+        "pass@1": 0.5,
+        "pass@2": 1.0
+      },
+      "method": "vanilla"
+    }
+  },
+  "overall": {
+    "method": "vanilla",
+    "total_correct": 8,
+    "total_records": 16,
+    "overall_accuracy": 0.5
+  }
+}

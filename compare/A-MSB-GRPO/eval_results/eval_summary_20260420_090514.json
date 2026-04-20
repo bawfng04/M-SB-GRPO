@@ -1,0 +1,446 @@
+{
+  "timestamp": "2026-04-20T09:05:14.032855+00:00",
+  "benchmarks": [
+    {
+      "benchmark": "benchmark-dryrun",
+      "datasets": {
+        "aime24": {
+          "dataset": "aime24",
+          "total_records": 128,
+          "total_questions": 16,
+          "total_correct": 80,
+          "accuracy": 0.625,
+          "pass_at_k": {
+            "pass@1": 0.625,
+            "pass@2": 0.8482142857142857,
+            "pass@4": 0.9607142857142857,
+            "pass@8": 1.0
+          },
+          "method": "vanilla"
+        },
+        "amc23": {
+          "dataset": "amc23",
+          "total_records": 128,
+          "total_questions": 16,
+          "total_correct": 75,
+          "accuracy": 0.5859375,
+          "pass_at_k": {
+            "pass@1": 0.5859375,
+            "pass@2": 0.8325892857142857,
+            "pass@4": 0.9741071428571428,
+            "pass@8": 1.0
+          },
+          "method": "vanilla"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 128,
+          "total_questions": 16,
+          "total_correct": 79,
+          "accuracy": 0.6171875,
+          "pass_at_k": {
+            "pass@1": 0.6171875,
+            "pass@2": 0.8549107142857143,
+            "pass@4": 0.9839285714285715,
+            "pass@8": 1.0
+          },
+          "method": "vanilla"
+        },
+        "math_500": {
+          "dataset": "math_500",
+          "total_records": 128,
+          "total_questions": 16,
+          "total_correct": 79,
+          "accuracy": 0.6171875,
+          "pass_at_k": {
+            "pass@1": 0.6171875,
+            "pass@2": 0.84375,
+            "pass@4": 0.9580357142857143,
+            "pass@8": 1.0
+          },
+          "method": "vanilla"
+        }
+      },
+      "overall": {
+        "method": "vanilla",
+        "total_correct": 313,
+        "total_records": 512,
+        "overall_accuracy": 0.611328125
+      }
+    },
+    {
+      "benchmark": "benchmark-dryrun-amsb",
+      "datasets": {
+        "aime2025": {
+          "dataset": "aime2025",
+          "total_records": 32,
+          "total_questions": 8,
+          "total_correct": 18,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8541666666666667,
+            "pass@4": 1.0
+          },
+          "method": "amsb"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 32,
+          "total_questions": 8,
+          "total_correct": 21,
+          "accuracy": 0.65625,
+          "pass_at_k": {
+            "pass@1": 0.65625,
+            "pass@2": 0.8541666666666666,
+            "pass@4": 1.0
+          },
+          "method": "amsb"
+        },
+        "math500": {
+          "dataset": "math500",
+          "total_records": 32,
+          "total_questions": 8,
+          "total_correct": 23,
+          "accuracy": 0.71875,
+          "pass_at_k": {
+            "pass@1": 0.71875,
+            "pass@2": 0.8958333333333334,
+            "pass@4": 1.0
+          },
+          "method": "amsb"
+        },
+        "olympiadbench": {
+          "dataset": "olympiadbench",
+          "total_records": 32,
+          "total_questions": 8,
+          "total_correct": 21,
+          "accuracy": 0.65625,
+          "pass_at_k": {
+            "pass@1": 0.65625,
+            "pass@2": 0.8958333333333334,
+            "pass@4": 1.0
+          },
+          "method": "amsb"
+        }
+      },
+      "overall": {
+        "method": "amsb",
+        "total_correct": 83,
+        "total_records": 128,
+        "overall_accuracy": 0.6484375
+      }
+    },
+    {
+      "benchmark": "benchmark-dryrun-h100-contract",
+      "datasets": {
+        "aime24": {
+          "dataset": "aime24",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        },
+        "amc23": {
+          "dataset": "amc23",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.875,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        },
+        "math_500": {
+          "dataset": "math_500",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.9166666666666667,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        }
+      },
+      "overall": {
+        "method": "vanilla",
+        "total_correct": 40,
+        "total_records": 64,
+        "overall_accuracy": 0.625
+      }
+    },
+    {
+      "benchmark": "benchmark-dryrun-mgrpo",
+      "datasets": {
+        "aime24": {
+          "dataset": "aime24",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "mgrpo"
+        },
+        "amc23": {
+          "dataset": "amc23",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "mgrpo"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.875,
+            "pass@4": 1.0
+          },
+          "method": "mgrpo"
+        },
+        "math_500": {
+          "dataset": "math_500",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.9166666666666667,
+            "pass@4": 1.0
+          },
+          "method": "mgrpo"
+        }
+      },
+      "overall": {
+        "method": "mgrpo",
+        "total_correct": 40,
+        "total_records": 64,
+        "overall_accuracy": 0.625
+      }
+    },
+    {
+      "benchmark": "benchmark-dryrun-requested",
+      "datasets": {
+        "aime2025": {
+          "dataset": "aime2025",
+          "total_records": 4,
+          "total_questions": 2,
+          "total_correct": 3,
+          "accuracy": 0.75,
+          "pass_at_k": {
+            "pass@1": 0.75,
+            "pass@2": 1.0
+          },
+          "method": "vanilla"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 4,
+          "total_questions": 2,
+          "total_correct": 2,
+          "accuracy": 0.5,
+          "pass_at_k": {
+            "pass@1": 0.5,
+            "pass@2": 1.0
+          },
+          "method": "vanilla"
+        },
+        "math500": {
+          "dataset": "math500",
+          "total_records": 4,
+          "total_questions": 2,
+          "total_correct": 1,
+          "accuracy": 0.25,
+          "pass_at_k": {
+            "pass@1": 0.25,
+            "pass@2": 0.5
+          },
+          "method": "vanilla"
+        },
+        "olympiadbench": {
+          "dataset": "olympiadbench",
+          "total_records": 4,
+          "total_questions": 2,
+          "total_correct": 2,
+          "accuracy": 0.5,
+          "pass_at_k": {
+            "pass@1": 0.5,
+            "pass@2": 1.0
+          },
+          "method": "vanilla"
+        }
+      },
+      "overall": {
+        "method": "vanilla",
+        "total_correct": 8,
+        "total_records": 16,
+        "overall_accuracy": 0.5
+      }
+    },
+    {
+      "benchmark": "benchmark-dryrun-seed",
+      "datasets": {
+        "aime24": {
+          "dataset": "aime24",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "seed"
+        },
+        "amc23": {
+          "dataset": "amc23",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "seed"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.875,
+            "pass@4": 1.0
+          },
+          "method": "seed"
+        },
+        "math_500": {
+          "dataset": "math_500",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.9166666666666667,
+            "pass@4": 1.0
+          },
+          "method": "seed"
+        }
+      },
+      "overall": {
+        "method": "seed",
+        "total_correct": 40,
+        "total_records": 64,
+        "overall_accuracy": 0.625
+      }
+    },
+    {
+      "benchmark": "benchmark-dryrun-vanilla",
+      "datasets": {
+        "aime24": {
+          "dataset": "aime24",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        },
+        "amc23": {
+          "dataset": "amc23",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 9,
+          "accuracy": 0.5625,
+          "pass_at_k": {
+            "pass@1": 0.5625,
+            "pass@2": 0.8333333333333334,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        },
+        "gsm8k": {
+          "dataset": "gsm8k",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.875,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        },
+        "math_500": {
+          "dataset": "math_500",
+          "total_records": 16,
+          "total_questions": 4,
+          "total_correct": 11,
+          "accuracy": 0.6875,
+          "pass_at_k": {
+            "pass@1": 0.6875,
+            "pass@2": 0.9166666666666667,
+            "pass@4": 1.0
+          },
+          "method": "vanilla"
+        }
+      },
+      "overall": {
+        "method": "vanilla",
+        "total_correct": 40,
+        "total_records": 64,
+        "overall_accuracy": 0.625
+      }
+    }
+  ]
+}

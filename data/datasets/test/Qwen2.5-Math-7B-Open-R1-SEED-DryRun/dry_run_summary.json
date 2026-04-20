@@ -1,0 +1,24 @@
+{
+  "runtime_profile": "local-dryrun",
+  "method": "seed",
+  "dry_run": true,
+  "dry_run_skip_train": true,
+  "train_split": "train",
+  "train_samples": 32,
+  "reward_funcs": [
+    "accuracy",
+    "format",
+    "tag_count"
+  ],
+  "method_diagnostics": {
+    "method": "seed",
+    "train_seed_entropy_mean": 0.0,
+    "train_seed_entropy_max": 0.0,
+    "train_seed_modulation_mean": 1.0,
+    "test_seed_entropy_mean": 0.0,
+    "test_seed_entropy_max": 0.0,
+    "test_seed_modulation_mean": 1.0
+  },
+  "hub_model_id": "Qwen2.5-Math-7B-Open-R1-SEED-DryRun",
+  "output_dir": "data/Qwen2.5-Math-7B-Open-R1-SEED-DryRun"
+}

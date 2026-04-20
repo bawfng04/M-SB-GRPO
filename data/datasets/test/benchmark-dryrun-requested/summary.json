@@ -1,0 +1,44 @@
+{
+  "runtime_profile": "local-dryrun",
+  "method": "vanilla",
+  "num_generations": 2,
+  "num_questions": 2,
+  "datasets": {
+    "math500": {
+      "records": 4,
+      "questions": 2,
+      "metrics": {
+        "pass@1": 0.25,
+        "pass@2": 0.5
+      },
+      "jsonl": "data/benchmark-dryrun-requested/math500.jsonl"
+    },
+    "gsm8k": {
+      "records": 4,
+      "questions": 2,
+      "metrics": {
+        "pass@1": 0.5,
+        "pass@2": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun-requested/gsm8k.jsonl"
+    },
+    "aime2025": {
+      "records": 4,
+      "questions": 2,
+      "metrics": {
+        "pass@1": 0.75,
+        "pass@2": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun-requested/aime2025.jsonl"
+    },
+    "olympiadbench": {
+      "records": 4,
+      "questions": 2,
+      "metrics": {
+        "pass@1": 0.5,
+        "pass@2": 1.0
+      },
+      "jsonl": "data/benchmark-dryrun-requested/olympiadbench.jsonl"
+    }
+  }
+}
