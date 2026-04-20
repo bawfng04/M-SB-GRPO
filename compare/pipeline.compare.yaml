@@ -1,0 +1,70 @@
+version: 1
+workspace_root: .
+artifacts_dir: artifacts/compare
+
+dataset_manifest: datasets.compare.manifest.yaml
+dataset_lock: datasets.compare.lock.json
+
+runs:
+  - id: openr1_vanilla
+    enabled: true
+    repo: open-r1
+    method: vanilla
+    train_command: pwsh -NoProfile -File scripts/run_local_dryrun.ps1 -RecipeConfig recipes/Qwen2.5-Math-7B/grpo/config_local_dryrun.yaml
+    eval_command: python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 16 --num-generations 8 --offline-only --output-dir data/benchmark-dryrun-vanilla
+    metric_collectors:
+      - kind: openr1_dryrun_summary
+        path: data/Qwen2.5-Math-7B-Open-R1-GRPO-DryRun/dry_run_summary.json
+      - kind: openr1_benchmark_summary
+        path: data/benchmark-dryrun-vanilla/summary.json
+
+  - id: openr1_mgrpo
+    enabled: true
+    repo: open-r1
+    method: mgrpo
+    train_command: pwsh -NoProfile -File scripts/run_local_dryrun.ps1 -RecipeConfig recipes/Qwen2.5-Math-7B/grpo/config_mgrpo_local_dryrun.yaml
+    eval_command: python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 16 --num-generations 8 --offline-only --method mgrpo --output-dir data/benchmark-dryrun-mgrpo
+    metric_collectors:
+      - kind: openr1_dryrun_summary
+        path: data/Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun/dry_run_summary.json
+      - kind: openr1_benchmark_summary
+        path: data/benchmark-dryrun-mgrpo/summary.json
+
+  - id: openr1_seed
+    enabled: true
+    repo: open-r1
+    method: seed
+    train_command: pwsh -NoProfile -File scripts/run_local_dryrun.ps1 -RecipeConfig recipes/Qwen2.5-Math-7B/grpo/config_seed_local_dryrun.yaml
+    eval_command: python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 16 --num-generations 8 --offline-only --method seed --output-dir data/benchmark-dryrun-seed
+    metric_collectors:
+      - kind: openr1_dryrun_summary
+        path: data/Qwen2.5-Math-7B-Open-R1-SEED-DryRun/dry_run_summary.json
+      - kind: openr1_benchmark_summary
+        path: data/benchmark-dryrun-seed/summary.json
+
+  - id: ngrpo_template
+    enabled: false
+    repo: NGRPO
+    method: ngrpo
+    train_command: bash train_scripts/train_qwen2.5-math-7b_ngrpo.sh
+    eval_command: bash eval_math.sh
+    metric_collectors:
+      - kind: jsonl_accuracy
+        glob: outputs/**/*.jsonl
+
+  - id: diva_template
+    enabled: false
+    repo: DIVA-GRPO
+    method: diva
+    train_command: bash examples/main_exp/ZSCORENORM_WAN_RRBLOCAL_RRBGLOBAL_5000_k=0.1.sh
+    metric_collectors:
+      - kind: jsonl_accuracy
+        glob: outputs/**/*.jsonl
+
+  - id: deepseek_eval_snapshot
+    enabled: true
+    repo: DeepSeek-Math
+    method: deepseek-eval
+    metric_collectors:
+      - kind: deepseek_evaluation_results
+        path: evaluation/evaluation_results.json

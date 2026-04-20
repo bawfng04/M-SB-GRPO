@@ -1,0 +1,14 @@
+version: 1
+datasets:
+  - id: requested_train
+    split: train
+    path: open-r1/data/datasets/requested/train/combined_train.parquet
+    format: parquet
+    required_columns:
+      - problem
+  - id: requested_test
+    split: test
+    path: open-r1/data/datasets/requested/test/combined_test.parquet
+    format: parquet
+    required_columns:
+      - problem
