@@ -1,13 +1,723 @@
 [
   {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "MMLU-STEM-test::cot",
+    "metric": "accuracy",
+    "value": 0.5646123260437376,
+    "n_samples": 3018,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "OCWCourses::cot",
+    "metric": "accuracy",
+    "value": 0.15441176470588236,
+    "n_samples": 272,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "agieval-gaokao-mathcloze-cot-test::cot",
+    "metric": "accuracy",
+    "value": 0.2033898305084746,
+    "n_samples": 118,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "agieval-gaokao-mathqa-cot-test::cot",
+    "metric": "accuracy",
+    "value": 0.35327635327635326,
+    "n_samples": 351,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "cmath-cot-test::cot",
+    "metric": "accuracy",
+    "value": 0.7167577413479053,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "cmath::cot",
+    "metric": "accuracy",
+    "value": 0.8460837887067395,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "cmath::cot",
+    "metric": "accuracy",
+    "value": 0.8879781420765027,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "cmath::tool",
+    "metric": "accuracy",
+    "value": 0.843351548269581,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "cmath::tool",
+    "metric": "accuracy",
+    "value": 0.8761384335154827,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "gsm8k-cot-test::cot",
+    "metric": "accuracy",
+    "value": 0.6421531463229719,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "gsm8k-pal-test::tool",
+    "metric": "accuracy",
+    "value": 0.66868840030326,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "gsm8k-test::cot",
+    "metric": "accuracy",
+    "value": 0.8286580742987112,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "gsm8k-test::cot",
+    "metric": "accuracy",
+    "value": 0.8824867323730099,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "gsm8k-test::tool",
+    "metric": "accuracy",
+    "value": 0.8369977255496588,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "gsm8k-test::tool",
+    "metric": "accuracy",
+    "value": 0.866565579984837,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "math-cot-test::cot",
+    "metric": "accuracy",
+    "value": 0.3618,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "math-pal-test::tool",
+    "metric": "accuracy",
+    "value": 0.3142,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "math-test::cot",
+    "metric": "accuracy",
+    "value": 0.4682,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "math-test::cot",
+    "metric": "accuracy",
+    "value": 0.517,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "math-test::tool",
+    "metric": "accuracy",
+    "value": 0.575,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "math-test::tool",
+    "metric": "accuracy",
+    "value": 0.5878,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "math_sat::cot",
+    "metric": "accuracy",
+    "value": 0.84375,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "mgsm-zh::cot",
+    "metric": "accuracy",
+    "value": 0.732,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "mgsm-zh::cot",
+    "metric": "accuracy",
+    "value": 0.796,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "mgsm-zh::tool",
+    "metric": "accuracy",
+    "value": 0.72,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "mgsm-zh::tool",
+    "metric": "accuracy",
+    "value": 0.784,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "miniF2F-Isabelle-test::cot",
+    "metric": "accuracy",
+    "value": 1.0,
+    "n_samples": 244,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "miniF2F-Isabelle-valid::cot",
+    "metric": "accuracy",
+    "value": 1.0,
+    "n_samples": 244,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "MMLU-STEM-test",
+    "metric": "cot/accuracy",
+    "value": 0.5646123260437376,
+    "n_samples": 3018,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "OCWCourses",
+    "metric": "cot/accuracy",
+    "value": 0.15441176470588236,
+    "n_samples": 272,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "agieval-gaokao-mathcloze-cot-test",
+    "metric": "cot/accuracy",
+    "value": 0.2033898305084746,
+    "n_samples": 118,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "agieval-gaokao-mathqa-cot-test",
+    "metric": "cot/accuracy",
+    "value": 0.35327635327635326,
+    "n_samples": 351,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "cmath",
+    "metric": "cot/accuracy",
+    "value": 0.8460837887067395,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "cmath",
+    "metric": "cot/accuracy",
+    "value": 0.8879781420765027,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "cmath-cot-test",
+    "metric": "cot/accuracy",
+    "value": 0.7167577413479053,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "gsm8k-cot-test",
+    "metric": "cot/accuracy",
+    "value": 0.6421531463229719,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "gsm8k-test",
+    "metric": "cot/accuracy",
+    "value": 0.8286580742987112,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "gsm8k-test",
+    "metric": "cot/accuracy",
+    "value": 0.8824867323730099,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "math-cot-test",
+    "metric": "cot/accuracy",
+    "value": 0.3618,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "math-test",
+    "metric": "cot/accuracy",
+    "value": 0.4682,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "math-test",
+    "metric": "cot/accuracy",
+    "value": 0.517,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "math_sat",
+    "metric": "cot/accuracy",
+    "value": 0.84375,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "mgsm-zh",
+    "metric": "cot/accuracy",
+    "value": 0.732,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "mgsm-zh",
+    "metric": "cot/accuracy",
+    "value": 0.796,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "miniF2F-Isabelle-test",
+    "metric": "cot/accuracy",
+    "value": 1.0,
+    "n_samples": 244,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "miniF2F-Isabelle-valid",
+    "metric": "cot/accuracy",
+    "value": 1.0,
+    "n_samples": 244,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/test_amsb_balanced_group_size",
+    "value": 16.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/test_amsb_entropy_max",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/test_amsb_entropy_mean",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/test_amsb_scale_mean",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/test_amsb_scale_min",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/test_amsb_top_error_clusters_mean",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "train",
+    "metric": "method/test_guiding_phrase_count",
+    "value": 2.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "train",
+    "metric": "method/test_layer2_prompt_count",
+    "value": 32.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "method/test_seed_entropy_max",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "method/test_seed_entropy_mean",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "method/test_seed_modulation_mean",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/train_amsb_balanced_group_size",
+    "value": 16.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/train_amsb_entropy_max",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/train_amsb_entropy_mean",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/train_amsb_scale_mean",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/train_amsb_scale_min",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "method/train_amsb_top_error_clusters_mean",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "train",
+    "metric": "method/train_guiding_phrase_count",
+    "value": 2.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "train",
+    "metric": "method/train_layer2_prompt_count",
+    "value": 32.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "method/train_seed_entropy_max",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "method/train_seed_entropy_mean",
+    "value": 0.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "method/train_seed_modulation_mean",
+    "value": 1.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
     "run_id": "openr1_amsb",
     "repo": "open-r1",
     "method": "amsb",
     "dataset": "aime2025",
     "metric": "pass@1",
-    "value": 0.5625,
-    "n_samples": 8,
+    "value": 0.625,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "aime2025",
+    "metric": "pass@1",
+    "value": 0.625,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "aime2025",
+    "metric": "pass@1",
+    "value": 0.625,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "aime2025",
+    "metric": "pass@1",
+    "value": 0.625,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -15,9 +725,39 @@
     "method": "amsb",
     "dataset": "gsm8k",
     "metric": "pass@1",
-    "value": 0.65625,
-    "n_samples": 8,
+    "value": 0.6171875,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "gsm8k",
+    "metric": "pass@1",
+    "value": 0.6171875,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "gsm8k",
+    "metric": "pass@1",
+    "value": 0.6171875,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "gsm8k",
+    "metric": "pass@1",
+    "value": 0.6171875,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -25,9 +765,39 @@
     "method": "amsb",
     "dataset": "math500",
     "metric": "pass@1",
-    "value": 0.71875,
-    "n_samples": 8,
+    "value": 0.6171875,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "math500",
+    "metric": "pass@1",
+    "value": 0.6171875,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "math500",
+    "metric": "pass@1",
+    "value": 0.6171875,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "math500",
+    "metric": "pass@1",
+    "value": 0.6171875,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -35,9 +805,39 @@
     "method": "amsb",
     "dataset": "olympiadbench",
     "metric": "pass@1",
-    "value": 0.65625,
-    "n_samples": 8,
+    "value": 0.5859375,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "olympiadbench",
+    "metric": "pass@1",
+    "value": 0.5859375,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "olympiadbench",
+    "metric": "pass@1",
+    "value": 0.5859375,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "olympiadbench",
+    "metric": "pass@1",
+    "value": 0.5859375,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -45,9 +845,39 @@
     "method": "amsb",
     "dataset": "aime2025",
     "metric": "pass@2",
-    "value": 0.8541666666666665,
-    "n_samples": 8,
+    "value": 0.8482142857142857,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "aime2025",
+    "metric": "pass@2",
+    "value": 0.8482142857142857,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "aime2025",
+    "metric": "pass@2",
+    "value": 0.8482142857142857,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "aime2025",
+    "metric": "pass@2",
+    "value": 0.8482142857142857,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -55,9 +885,39 @@
     "method": "amsb",
     "dataset": "gsm8k",
     "metric": "pass@2",
-    "value": 0.8541666666666666,
-    "n_samples": 8,
+    "value": 0.8549107142857143,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "gsm8k",
+    "metric": "pass@2",
+    "value": 0.8549107142857143,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "gsm8k",
+    "metric": "pass@2",
+    "value": 0.8549107142857143,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "gsm8k",
+    "metric": "pass@2",
+    "value": 0.8549107142857143,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -65,9 +925,39 @@
     "method": "amsb",
     "dataset": "math500",
     "metric": "pass@2",
-    "value": 0.8958333333333333,
-    "n_samples": 8,
+    "value": 0.8437499999999999,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "math500",
+    "metric": "pass@2",
+    "value": 0.8437499999999999,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "math500",
+    "metric": "pass@2",
+    "value": 0.8437499999999999,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "math500",
+    "metric": "pass@2",
+    "value": 0.8437499999999999,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -75,9 +965,39 @@
     "method": "amsb",
     "dataset": "olympiadbench",
     "metric": "pass@2",
-    "value": 0.8958333333333333,
-    "n_samples": 8,
+    "value": 0.8325892857142855,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "olympiadbench",
+    "metric": "pass@2",
+    "value": 0.8325892857142855,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "olympiadbench",
+    "metric": "pass@2",
+    "value": 0.8325892857142855,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "olympiadbench",
+    "metric": "pass@2",
+    "value": 0.8325892857142855,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -85,9 +1005,39 @@
     "method": "amsb",
     "dataset": "aime2025",
     "metric": "pass@4",
-    "value": 1.0,
-    "n_samples": 8,
+    "value": 0.9607142857142857,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "aime2025",
+    "metric": "pass@4",
+    "value": 0.9607142857142857,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "aime2025",
+    "metric": "pass@4",
+    "value": 0.9607142857142857,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "aime2025",
+    "metric": "pass@4",
+    "value": 0.9607142857142857,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -95,9 +1045,39 @@
     "method": "amsb",
     "dataset": "gsm8k",
     "metric": "pass@4",
-    "value": 1.0,
-    "n_samples": 8,
+    "value": 0.9839285714285715,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "gsm8k",
+    "metric": "pass@4",
+    "value": 0.9839285714285715,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "gsm8k",
+    "metric": "pass@4",
+    "value": 0.9839285714285715,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "gsm8k",
+    "metric": "pass@4",
+    "value": 0.9839285714285715,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -105,9 +1085,39 @@
     "method": "amsb",
     "dataset": "math500",
     "metric": "pass@4",
-    "value": 1.0,
-    "n_samples": 8,
+    "value": 0.9580357142857143,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "math500",
+    "metric": "pass@4",
+    "value": 0.9580357142857143,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "math500",
+    "metric": "pass@4",
+    "value": 0.9580357142857143,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "math500",
+    "metric": "pass@4",
+    "value": 0.9580357142857143,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
   },
   {
     "run_id": "openr1_amsb",
@@ -115,8 +1125,418 @@
     "method": "amsb",
     "dataset": "olympiadbench",
     "metric": "pass@4",
-    "value": 1.0,
-    "n_samples": 8,
+    "value": 0.9741071428571428,
+    "n_samples": 16,
     "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "olympiadbench",
+    "metric": "pass@4",
+    "value": 0.9741071428571428,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "olympiadbench",
+    "metric": "pass@4",
+    "value": 0.9741071428571428,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "olympiadbench",
+    "metric": "pass@4",
+    "value": 0.9741071428571428,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "aime2025",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "aime2025",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "aime2025",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "aime2025",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "gsm8k",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "gsm8k",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "gsm8k",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "gsm8k",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "math500",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "math500",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "math500",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "math500",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "olympiadbench",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-amsb\\summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "olympiadbench",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-mgrpo\\summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "olympiadbench",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-seed\\summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "olympiadbench",
+    "metric": "pass@8",
+    "value": 1.0,
+    "n_samples": 16,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\benchmark-dryrun-vanilla\\summary.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "cmath",
+    "metric": "tool/accuracy",
+    "value": 0.843351548269581,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "cmath",
+    "metric": "tool/accuracy",
+    "value": 0.8761384335154827,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "gsm8k-pal-test",
+    "metric": "tool/accuracy",
+    "value": 0.66868840030326,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "gsm8k-test",
+    "metric": "tool/accuracy",
+    "value": 0.8369977255496588,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "gsm8k-test",
+    "metric": "tool/accuracy",
+    "value": 0.866565579984837,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Base",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Base",
+    "dataset": "math-pal-test",
+    "metric": "tool/accuracy",
+    "value": 0.3142,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "math-test",
+    "metric": "tool/accuracy",
+    "value": 0.575,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "math-test",
+    "metric": "tool/accuracy",
+    "value": 0.5878,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "mgsm-zh",
+    "metric": "tool/accuracy",
+    "value": 0.72,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "mgsm-zh",
+    "metric": "tool/accuracy",
+    "value": 0.784,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "cmath",
+    "metric": "tool/program_accuracy",
+    "value": 0.8214936247723132,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "cmath",
+    "metric": "tool/program_accuracy",
+    "value": 0.8570127504553734,
+    "n_samples": 1098,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "gsm8k-test",
+    "metric": "tool/program_accuracy",
+    "value": 0.8332069749810462,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "gsm8k-test",
+    "metric": "tool/program_accuracy",
+    "value": 0.868081880212282,
+    "n_samples": 1319,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "math-test",
+    "metric": "tool/program_accuracy",
+    "value": 0.4664,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "math-test",
+    "metric": "tool/program_accuracy",
+    "value": 0.509,
+    "n_samples": 5000,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-Instruct",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-Instruct",
+    "dataset": "mgsm-zh",
+    "metric": "tool/program_accuracy",
+    "value": 0.716,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "deepseek_eval_snapshot:DeepSeekMath-RL",
+    "repo": "DeepSeek-Math",
+    "method": "deepseek-eval:DeepSeekMath-RL",
+    "dataset": "mgsm-zh",
+    "metric": "tool/program_accuracy",
+    "value": 0.776,
+    "n_samples": 250,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\DeepSeek-Math\\evaluation\\evaluation_results.json"
+  },
+  {
+    "run_id": "openr1_amsb",
+    "repo": "open-r1",
+    "method": "amsb",
+    "dataset": "train",
+    "metric": "train_samples",
+    "value": 32.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-AMSB-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_mgrpo",
+    "repo": "open-r1",
+    "method": "mgrpo",
+    "dataset": "train",
+    "metric": "train_samples",
+    "value": 32.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-MGRPO-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_seed",
+    "repo": "open-r1",
+    "method": "seed",
+    "dataset": "train",
+    "metric": "train_samples",
+    "value": 32.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-SEED-DryRun\\dry_run_summary.json"
+  },
+  {
+    "run_id": "openr1_vanilla",
+    "repo": "open-r1",
+    "method": "vanilla",
+    "dataset": "train",
+    "metric": "train_samples",
+    "value": 32.0,
+    "n_samples": 32,
+    "source": "D:\\Projects\\M-SB-GRPO\\compare\\open-r1\\data\\Qwen2.5-Math-7B-Open-R1-GRPO-DryRun\\dry_run_summary.json"
   }
 ]

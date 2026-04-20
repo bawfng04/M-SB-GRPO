@@ -1,0 +1,38 @@
+Lên server H100 sau khi clone thì làm theo thứ tự này:
+
+Vào đúng repo con open-r1
+cd M-SB-GRPO/compare/open-r1
+
+Bootstrap môi trường
+./scripts/bootstrap/install-drivers.sh
+./scripts/bootstrap/setup-env.sh --venv-path .venv
+source .venv/bin/activate
+
+Đưa dataset requested lên server đúng path
+data/datasets/requested/train/combined_train.parquet
+data/datasets/requested/test/combined_test.parquet
+
+Preflight kiểm tra server + deps + GPU
+./scripts/bootstrap/verify-setup.sh --config recipes/Qwen2.5-Math-7B/grpo/config_h100_prod.yaml
+./scripts/bootstrap/verify-setup.sh --config recipes/Qwen2.5-Math-7B/grpo/config_mgrpo_h100_prod.yaml
+./scripts/bootstrap/verify-setup.sh --config recipes/Qwen2.5-Math-7B/grpo/config_seed_h100_prod.yaml
+./scripts/bootstrap/verify-setup.sh --config recipes/Qwen2.5-Math-7B/grpo/config_amsb_h100_prod.yaml
+
+Chạy train production trên H100
+./scripts/deploy/train-grpo.sh --config recipes/Qwen2.5-Math-7B/grpo/config_h100_prod.yaml
+./scripts/deploy/train-grpo.sh --config recipes/Qwen2.5-Math-7B/grpo/config_mgrpo_h100_prod.yaml
+./scripts/deploy/train-grpo.sh --config recipes/Qwen2.5-Math-7B/grpo/config_seed_h100_prod.yaml
+./scripts/deploy/train-grpo.sh --config recipes/Qwen2.5-Math-7B/grpo/config_amsb_h100_prod.yaml
+
+Chạy benchmark trên server
+python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 64 --num-generations 8 --runtime-profile h100-prod --method vanilla --output-dir data/benchmark-h100-vanilla
+python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 64 --num-generations 8 --runtime-profile h100-prod --method mgrpo --output-dir data/benchmark-h100-mgrpo
+python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 64 --num-generations 8 --runtime-profile h100-prod --method seed --output-dir data/benchmark-h100-seed
+python scripts/run_benchmark_dryrun.py --datasets math500,gsm8k,aime2025,olympiadbench --num-questions 64 --num-generations 8 --runtime-profile h100-prod --method amsb --output-dir data/benchmark-h100-amsb
+
+Về .env trên H100:
+
+Với 4 pipeline math hiện tại (reward accuracy/format/tag_count) thì không bắt buộc phải có .env.
+Nên đăng nhập service trước: huggingface-cli login và wandb login (vì config H100 đang report_to wandb).
+Nếu không muốn dùng wandb, đổi report_to thành [] trong các file config h100 hoặc export WANDB_MODE=disabled trước khi train.
+.env chỉ thật sự cần khi bạn dùng code sandbox/reward nâng cao (E2B, Morph, Piston), khi đó mới cần E2B_API_KEY, MORPH_API_KEY, PISTON_ENDPOINTS.

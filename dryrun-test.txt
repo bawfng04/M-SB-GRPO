@@ -1,0 +1,4 @@
+
+Test-Path .\compare\open-r1\.venv\Scripts\python.exe
+
+& ".\compare\open-r1\.venv\Scripts\python.exe" ".\compare\run_compare_pipeline.py" --config ".\compare\pipeline.compare.yaml" --stage all
