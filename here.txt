@@ -1,0 +1,4 @@
+tmux new -s grpo_run
+cd compare/open-r1
+chmod +x ./scripts/run_baselines_h100.sh
+./scripts/run_baselines_h100.sh
