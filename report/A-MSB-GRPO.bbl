@@ -1,0 +1,54 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Anonymous}{2025a}]{mgrpo}
+Anonymous.
+\newblock 2025a.
+\newblock Mgrpo: Enhancing reasoning and self-correction via multi-layer group
+  relative policy optimization.
+\newblock {\em arXiv preprint arXiv:2506.04746}.
+
+\bibitem[\protect\citeauthoryear{Anonymous}{2025b}]{ngrpo}
+Anonymous.
+\newblock 2025b.
+\newblock Ngrpo: Negative-enhanced group relative policy optimization.
+\newblock {\em arXiv preprint arXiv:2509.18851}.
+
+\bibitem[\protect\citeauthoryear{Anonymous}{2026}]{divagrpo}
+Anonymous.
+\newblock 2026.
+\newblock Diva-grpo: Diverse and balanced group relative policy optimization.
+\newblock {\em arXiv preprint arXiv:2603.01106}.
+
+\bibitem[\protect\citeauthoryear{Chen \bgroup et al\mbox.\egroup
+  }{2025}]{seedgrpo}
+Chen, M.; Chen, G.; Wang, W.; and Yang, Y.
+\newblock 2025.
+\newblock Seed-grpo: Semantic entropy enhanced grpo for uncertainty-aware
+  policy optimization.
+\newblock {\em arXiv preprint arXiv:2505.12346}.
+
+\bibitem[\protect\citeauthoryear{Kuhn, Gal, and
+  Farquhar}{2023}]{kuhn2023semantic}
+Kuhn, L.; Gal, Y.; and Farquhar, S.
+\newblock 2023.
+\newblock Semantic uncertainty: Linguistic invariances for uncertainty
+  estimation in natural language generation.
+\newblock In {\em International Conference on Learning Representations}.
+
+\bibitem[\protect\citeauthoryear{Schulman \bgroup et al\mbox.\egroup
+  }{2017}]{ppo}
+Schulman, J.; Wolski, F.; Dhariwal, P.; Radford, A.; and Klimov, O.
+\newblock 2017.
+\newblock Proximal policy optimization algorithms.
+\newblock {\em arXiv preprint arXiv:1707.06347}.
+
+\bibitem[\protect\citeauthoryear{Shao \bgroup et al\mbox.\egroup
+  }{2024}]{deepseekmath}
+Shao, Z.; Wang, P.; Zhu, Q.; Xu, R.; Song, J.; Bi, X.; Zhang, H.; Zhang, M.;
+  Li, Y.; Wu, Y.; et~al.
+\newblock 2024.
+\newblock Deepseekmath: Pushing the limits of mathematical reasoning in open
+  language models.
+\newblock {\em arXiv preprint arXiv:2402.03300}.
+
+\end{thebibliography}
