@@ -1,0 +1,60 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{Achiam2023GPT4TR}
+\citation{TheC3}
+\citation{deepseekmath}
+\@writefile{toc}{\contentsline {title}{SB-GRPO: Semantic-Balanced GRPO \unskip \ \ignorespaces  for Enhanced LLM Reasoning}{1}{chapter.1}\protected@file@percent }
+\@writefile{toc}{\authcount {3}}
+\@writefile{toc}{\contentsline {author}{ Bang Dinh Nguyen \and Bao Tran Dang \and Minh Quoc Nguyen\textsuperscript  {[{\fontfamily  {mvs}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 66}]} }{1}{chapter.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zhang2026trainlesslearnmore}
+\citation{mgrpo}
+\citation{madaan2023selfrefineiterativerefinementselffeedback}
+\citation{ngrpo}
+\citation{10.5555/3294996.3295184}
+\citation{Ji2024ReinforcementLF}
+\citation{ppo}
+\citation{deepseekmath}
+\citation{ngrpo}
+\citation{10.5555/3600270.3602070}
+\citation{madaan2023selfrefineiterativerefinementselffeedback}
+\citation{mgrpo}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\citation{kuhn2023semantic}
+\citation{seedgrpo}
+\citation{divagrpo}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Formal Derivation of SB-GRPO}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Heuristic Confidence Gate}{3}{section*.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The complete system architecture of SB-GRPO. The Heuristic Confidence Gate ($\Gamma $) dynamically routes uniform batches to the NGRPO module (Path A) to prevent advantage vanishing. For mixed batches (Path B), the framework applies Multi-Layer Reflection and Semantic Error Profiling (SEP) to extract the Top Error Cluster ($C_{top}$), forming a Static Balanced Batch optimized by an Entropy-Aware Loss Scaling factor ($\lambda $).}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{4}{The complete system architecture of SB-GRPO. The Heuristic Confidence Gate ($\Gamma $) dynamically routes uniform batches to the NGRPO module (Path A) to prevent advantage vanishing. For mixed batches (Path B), the framework applies Multi-Layer Reflection and Semantic Error Profiling (SEP) to extract the Top Error Cluster ($C_{top}$), forming a Static Balanced Batch optimized by an Entropy-Aware Loss Scaling factor ($\lambda $)}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Layered Generation and Reflection}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Semantic Error Profiling (SEP)}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces SB-GRPO Training Step}}{5}{algorithm.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Information-Theoretic Loss Scaling}{5}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Hardware-Aware Static Tensor Shaping}{5}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Datasets and Experimental Setup}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Setup}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Results}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Training Configuration}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Performance Evaluation}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pass@1 Accuracy (\%) on Advanced Reasoning Benchmarks (1 Sample).}}{7}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{7}{Pass@1 Accuracy (\%) on Advanced Reasoning Benchmarks (1 Sample)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Analysis}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pass@1 Accuracy (\%) on Advanced Reasoning Benchmarks (4 Samples).}}{8}{table.2}\protected@file@percent }
+\newlabel{tab:pass4}{{2}{8}{Pass@1 Accuracy (\%) on Advanced Reasoning Benchmarks (4 Samples)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Absolute Performance Gains ($\Delta $) of SB-GRPO over Baselines (based on 4-sample evaluation).}}{8}{table.3}\protected@file@percent }
+\newlabel{tab:delta}{{3}{8}{Absolute Performance Gains ($\Delta $) of SB-GRPO over Baselines (based on 4-sample evaluation)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Ablation Analysis: Deconstructing the Performance Gains}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO.}}{9}{table.4}\protected@file@percent }
+\newlabel{tab:math}{{4}{9}{MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Discussion}{9}{subsection.5.5}\protected@file@percent }
+\bibstyle{splncs04}
+\bibdata{references}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Relative performance gain of SB-GRPO compared to the M-GRPO baseline. The significant improvements in \textit  {Intermediate Algebra} (+4.88\%) and \textit  {Precalculus} (+5.68\%) demonstrate the effectiveness of semantic balancing in complex reasoning, while the stability in \textit  {Algebra} confirms that the Heuristic Confidence Gate prevents correction bias in simpler tasks.}}{10}{figure.2}\protected@file@percent }
+\newlabel{fig:delta}{{2}{10}{Relative performance gain of SB-GRPO compared to the M-GRPO baseline. The significant improvements in \textit {Intermediate Algebra} (+4.88\%) and \textit {Precalculus} (+5.68\%) demonstrate the effectiveness of semantic balancing in complex reasoning, while the stability in \textit {Algebra} confirms that the Heuristic Confidence Gate prevents correction bias in simpler tasks}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\gdef \@abspage@last{10}

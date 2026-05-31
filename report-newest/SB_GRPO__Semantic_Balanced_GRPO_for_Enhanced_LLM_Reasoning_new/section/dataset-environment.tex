@@ -1,0 +1,39 @@
+\section{Datasets and Experimental Setup}
+
+\subsection{Datasets}
+To comprehensively evaluate the reasoning capabilities and self-correction effectiveness of our proposed approach, we utilize a combination of well-established mathematical reasoning datasets for both training and evaluation.
+
+\subsubsection{Training Data} \mbox{} \\
+Our training dataset is constructed by combining high-quality mathematical problems from two primary sources:
+
+\textbf{MATH (Levels 3-5):} We filter the MATH dataset to include only problems with difficulty levels 3 to 5, resulting in 5,586 examples. This ensures the model is trained on challenging problems that require multi-step reasoning.
+
+\textbf{GSM8K:} We include the standard training split of GSM8K, contributing 7,473 high-quality, grade-school math word problems.
+
+The combined training set provides a robust foundation of both foundational arithmetic logic and advanced algebraic and geometric problem-solving skills.
+
+\subsubsection{Evaluation Benchmarks} \mbox{} \\
+For evaluation, we employ rigorous benchmarks to test generalization and advanced reasoning across mathematics and science:
+
+\textbf{MATH-500:} A curated subset of 500 challenging problems from the MATH dataset test split.
+
+\textbf{AIME 2024 \& 2025:} Highly challenging sets of 30 problems each from the American Invitational Mathematics Examination.
+
+\textbf{GPQA Diamond:} A highly challenging PhD-level benchmark containing 198 extremely difficult science questions.
+
+\textbf{GSM8K:} Evaluated on the standard test split (1,319 questions) to ensure foundational reasoning arithmetic is maintained without correction bias.
+
+\subsection{Experimental Setup}
+All experiments, including the training of our M-SB-GRPO models and all baseline comparisons (Vanilla GRPO, M-GRPO, SEED-GRPO), are conducted under a unified, strictly controlled environment to ensure fair comparisons.
+
+\subsubsection{Hardware Environment} \mbox{} \\
+The experiments are executed on a single high-performance Linux server equipped with 1$\times$ NVIDIA H100 GPU (80GB VRAM). 
+
+\subsubsection{Model and Training Configurations} \mbox{} \\
+\textbf{Base Model:} We adopt \texttt{Qwen/Qwen2.5-7B-Instruct} as the foundational model for all experiments.
+
+\textbf{Resource Optimization:} Due to memory constraints when training a 7B model on a single 80GB GPU alongside a generation engine, we apply 4-bit QLoRA (\texttt{load\_in\_4bit=True}, \texttt{use\_peft=True}). Furthermore, DeepSpeed ZeRO-3 and Flash Attention 2 are integrated to optimize memory efficiency and computation speed.
+
+\textbf{Generation Engine:} vLLM is utilized for high-throughput rollout generation, configured to allocate 30\% of the GPU VRAM.
+
+\textbf{Hyperparameters:} We train the models for 1 epoch with a learning rate of $1.0 \times 10^{-5}$. The maximum prompt length is constrained to 2048 tokens, and the completion length is set to 1024 tokens. During the rollout phase, the model generates $N=8$ independent completions per prompt.
