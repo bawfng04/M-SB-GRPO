@@ -1,8 +1,5 @@
 \section{Experimental Results}
 
-\subsection{Training Configuration}
-We use \textbf{Qwen2.5-7B-Instruct} as the backbone. Training is performed on a single \textbf{1x NVIDIA H100 80GB} GPU. To fit the entire RL pipeline within the 80GB VRAM constraint, we implement a sequential handoff between \textbf{vLLM} (generation) and \textbf{PyTorch/DeepSpeed} (training). We use \textbf{4-bit QLoRA} with a rank $r=16$ to further optimize memory utilization.
-
 \subsection{Performance Evaluation}
 All models were evaluated using the \texttt{lighteval} framework on the exact same hardware configuration to ensure fairness. Table \ref{tab:main} compares SB-GRPO with vanilla GRPO (which lacks reflection entirely) and M-GRPO (which utilizes reflection but samples revisions uniformly without semantic clustering).
 

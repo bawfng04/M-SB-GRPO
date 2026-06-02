@@ -20,7 +20,7 @@ Note that $\Gamma \in [0, 1]$, reaching $0$ at $R=0$ (all wrong) or $R=1$ (all c
 \begin{equation}
 A_{i} = \Gamma \cdot A_{std_i} + (1-\Gamma) \cdot A_{ngrpo_i}
 \end{equation}
-where $A_{ngrpo}$ uses a virtual reward $r_{virtual} = 1$ to inject a negative signal even when all $r_i=0$. The standard advantage is computed as $A_{std_i} = (r_i - \mu) / \sigma$, where $\mu$ and $\sigma$ are the mean and standard deviation of rewards within the group. When variance approaches zero, $A_{std}$ vanishes, making $A_{ngrpo}$ critical for continuous training.
+where $A_{ngrpo}$ uses a virtual reward $r_{virtual} = 1$ to inject a negative signal even when all $r_i=0$. The standard advantage is computed as $A_{std_i} = (r_i - \mu) / \sigma$, where $\mu$ and $\sigma$ are the mean and standard deviation of rewards within the group. When variance approaches zero, zero $A_{std}$, making $A_{ngrpo}$ critical for continuous training.
 
 \begin{algorithm}
 \caption{SB-GRPO Training Step}
@@ -37,7 +37,7 @@ where $A_{ngrpo}$ uses a virtual reward $r_{virtual} = 1$ to inject a negative s
     \STATE $B \gets$ Sample $S/2$ from $P_{correct}$ and $S/2$ from $C_{top}$
 \ELSE
     \STATE $\lambda \gets 1.0$, $B \gets$ Sample $S$ uniformly from $O$
-    \STATE Use NGRPO Virtual Advantage $A_{ngrpo_i}$
+    \STATE Use NGRPO Virtual Advantage $A_{ngrpo}$
 \ENDIF
 \STATE \textbf{Training Phase:}
 \STATE Flush vLLM cache $\to$ Init PyTorch Trainer
@@ -49,20 +49,31 @@ where $A_{ngrpo}$ uses a virtual reward $r_{virtual} = 1$ to inject a negative s
 \end{algorithm}
 
 \subsection{Layered Generation and Reflection}\label{subsec:layer-generation-reflection}
-The pipeline is split into two layers to simulate the "Internal Monologue" and "External Correction":
-\begin{enumerate}
-    \item \textbf{Layer 1 (Rollout):} $N=8$ samples are generated with temperature $T=0.7$ to explore the solution space.
-    \item \textbf{Layer 2 (Reflection):} If $\Gamma > 0$, the model performs $M=2$ reflections per rollout using a neutral system prompt: \textit{"Review the solution logic. Only correct it if errors are found; otherwise, maintain consistency."} This creates a pool of $N \times M = 16$ reasoning paths.
-\end{enumerate}
+Rather than relying on a single-pass generation, SB-GRPO isolates the exploration and verification phases into a two-layer pipeline. This deliberate separation allows the model to systematically audit its own reasoning paths before gradient updates are computed. The process is defined as follows:
+
+\textbf{Layer 1 (Rollout):} $N=8$ samples are generated with temperature $\tau=0.7$ to explore the solution space.
+
+\textbf{Layer 2 (Reflection):} If $\Gamma > 0$, the model performs $M=2$ reflections per rollout using a neutral system prompt: \textit{"Review the solution logic. Only correct it if errors are found; otherwise, maintain consistency."} This creates a pool of $N \times M = 16$ reasoning paths.
+
 
 \subsection{Semantic Error Profiling (SEP)}\label{subsec:SEP}
-Incorrect samples are vectorized using a frozen \textit{all-MiniLM-L6-v2} encoder running entirely on the CPU to avoid VRAM contention. We apply K-Means clustering ($K=4$) to partition the errors into semantic clusters $C = \{C_1, \dots, C_K\}$. We identify the \textbf{Top Error Cluster} $C_{top} = \text{argmax}_k |C_k|$. This cluster represents the most common logical failure mode for the given prompt, allowing for \textbf{Targeted Error Correction}.
-
+To effectively disambiguate structural reasoning flaws from superficial generation noise, the SEP module projects all incorrect trajectories into a dense semantic space. Specifically, incorrect samples are vectorized utilizing a frozen \textit{all-MiniLM-L6-v2} encoder. Subsequently, K-Means clustering ($K=4$) is applied to partition these latent embeddings into a discrete set of semantic clusters $C = \{C_1, \dots, C_K\}$. By identifying the top error cluster, defined mathematically as $C_{top} = \arg\max_k |C_k|$, we isolate the most prevalent logical failure mode associated with the given prompt. This isolation provides a concentrated learning signal for targeted error correction, ensuring the policy optimizes against systematic misconceptions rather than stochastic, trivial errors.
 \subsection{Information-Theoretic Loss Scaling}\label{subsec:info-theoretic-loss}
-We measure the uncertainty of the model's error state via the Shannon Entropy $H$ of the cluster distribution $p_k = |C_k| / \sum |C_j|$:
+To mathematically quantify the epistemic uncertainty inherent in the model's failure modes, we compute the Shannon Entropy $H$ over the semantic cluster distribution. Let $p_k = |C_k| / \sum_{j=1}^K |C_j|$ denote the probability mass of the $k$-th cluster. The entropy is defined as:
 \begin{equation}
 H = - \sum_{k=1}^K p_k \log(p_k)
 \end{equation}
-The loss scaling factor $\lambda = \exp(-H/\tau)$ (where temperature $\tau=1.0$) is applied to the policy gradient. High entropy (random, diverse arithmetic errors) leads to smaller updates, while low entropy (concentrated, systematic logical errors) leads to larger updates.
+Based on this uncertainty metric, we introduce a dynamic loss scaling factor $\lambda = \exp(-H/\tau)$, where $\tau$ serves as a temperature hyperparameter (set empirically to $\tau=1.0$). This scaling factor is directly applied to modulate the policy gradient. Intuitively, a high entropy value signifies a highly dispersed, random distribution of superficial errors (e.g., stochastic arithmetic mistakes), thereby dampening the gradient update to prevent the model from overfitting to noise. Conversely, a low entropy value indicates a concentrated, systematic logical flaw, triggering a remarkably larger, more aggressive optimization step to rectify the foundational misunderstanding.
 
+\subsection{Semantic-Balanced GRPO Objective Function}
+The final optimization objective integrates the standard PPO clipped surrogate loss, the KL divergence penalty, and our novel entropy-aware loss scaling factor $\lambda$. For a prompt $q$ and a static balanced batch $B$ of size $S$, the policy $\pi_\theta$ is updated by maximizing the objective:
+
+\begin{equation}
+\begin{aligned}
+\mathcal{J}_{\text{SB-GRPO}}(\theta) = \frac{1}{S} \sum_{i=1}^{S} \Bigg[ &\lambda \min \left( \frac{\pi_\theta(o_i|q)}{\pi_{\text{old}}(o_i|q)} A_i, \text{clip}\left(\frac{\pi_\theta(o_i|q)}{\pi_{\text{old}}(o_i|q)}, 1-\epsilon, 1+\epsilon\right) A_i \right) \\
+&- \beta \mathbb{D}_{\text{KL}}(\pi_\theta \| \pi_{\text{ref}}) \Bigg]
+\end{aligned}
+\end{equation}
+
+where $A_i$ is the dynamically routed advantage (via the Heuristic Confidence Gate $\Gamma$), $\epsilon$ is the clipping hyperparameter, and $\beta$ controls the KL penalty against the reference model $\pi_{\text{ref}}$. By injecting $\lambda$ into the outer summation, the magnitude of the policy update is strictly regulated by the semantic concentration of the error clusters, forcing the model to heavily penalize and unlearn systematic logical flaws while conservatively adjusting for noisy, random errors.
 
