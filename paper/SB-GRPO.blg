@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: SB-GRPO.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: splncs04.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+Repeated entry---line 137 of file references.bib
+ : @misc{madaan2023selfrefineiterativerefinementselffeedback
+ :                                                          ,
+I'm skipping whatever remains of this entry
+Warning--empty booktitle in Achiam2023GPT4TR
+Warning--empty booktitle in TheC3
+Warning--empty year in TheC3
+You've used 14 entries,
+            2850 wiz_defined-function locations,
+            665 strings with 8232 characters,
+and the built_in function-call counts, 8421 in all, are:
+= -- 564
+> -- 518
+< -- 2
++ -- 211
+- -- 196
+* -- 610
+:= -- 1146
+add.period$ -- 7
+call.type$ -- 14
+change.case$ -- 143
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 653
+empty$ -- 651
+format.name$ -- 209
+if$ -- 1715
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 170
+newline$ -- 48
+num.names$ -- 28
+pop$ -- 409
+preamble$ -- 1
+purify$ -- 125
+quote$ -- 0
+skip$ -- 163
+stack$ -- 0
+substring$ -- 197
+swap$ -- 364
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 56
+warning$ -- 3
+while$ -- 42
+width$ -- 16
+write$ -- 127
+(There was 1 error message)
