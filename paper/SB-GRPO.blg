@@ -8,45 +8,45 @@ Database file #1: references.bib
 Warning--empty booktitle in Achiam2023GPT4TR
 Warning--empty booktitle in TheC3
 Warning--empty year in TheC3
-You've used 14 entries,
+You've used 20 entries,
             2850 wiz_defined-function locations,
-            665 strings with 8232 characters,
-and the built_in function-call counts, 8421 in all, are:
-= -- 564
-> -- 518
+            691 strings with 9718 characters,
+and the built_in function-call counts, 11793 in all, are:
+= -- 780
+> -- 740
 < -- 2
-+ -- 211
-- -- 196
-* -- 610
-:= -- 1146
++ -- 301
+- -- 280
+* -- 862
+:= -- 1608
 add.period$ -- 7
-call.type$ -- 14
-change.case$ -- 143
+call.type$ -- 20
+change.case$ -- 203
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 653
-empty$ -- 651
-format.name$ -- 209
-if$ -- 1715
+cite$ -- 23
+duplicate$ -- 899
+empty$ -- 915
+format.name$ -- 299
+if$ -- 2393
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 170
-newline$ -- 48
-num.names$ -- 28
-pop$ -- 409
+int.to.str$ -- 20
+missing$ -- 236
+newline$ -- 66
+num.names$ -- 40
+pop$ -- 583
 preamble$ -- 1
-purify$ -- 125
+purify$ -- 179
 quote$ -- 0
-skip$ -- 163
+skip$ -- 217
 stack$ -- 0
-substring$ -- 197
-swap$ -- 364
+substring$ -- 275
+swap$ -- 502
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
+type$ -- 80
 warning$ -- 3
-while$ -- 42
-width$ -- 16
-write$ -- 127
+while$ -- 60
+width$ -- 22
+write$ -- 175
 (There were 3 warnings)

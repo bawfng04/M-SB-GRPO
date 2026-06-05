@@ -6,8 +6,8 @@ To comprehensively evaluate the reasoning capabilities and self-correction effec
 \subsubsection{Training Data:}
 Our training dataset is constructed by systematically aggregating math-focused data from open-source repositories:
 \begin{itemize}
-    \item \textbf{MATH (Levels 3-5):} We filter the MATH dataset to include only problems with difficulty levels 3 to 5, resulting in 5,586 examples. This ensures the model is trained on challenging problems that require multi-step reasoning.
-    \item \textbf{GSM8K:} We include the standard training split of GSM8K, contributing 7,473 high-quality, grade-school math word problems.
+    \item \textbf{MATH (Levels 3-5):} We filter the MATH dataset \cite{hendrycks2021measuringmathematicalproblemsolving} to include only problems with difficulty levels 3 to 5, resulting in 5,586 examples. This ensures the model is trained on challenging problems that require multi-step reasoning.
+    \item \textbf{GSM8K:} We include the standard training split of GSM8K \cite{cobbe2021trainingverifierssolvemath}, contributing 7,473 high-quality, grade-school math word problems.
 \end{itemize}
 The combined training set provides a robust foundation of both foundational arithmetic logic and advanced algebraic and geometric problem-solving skills.
 
@@ -16,12 +16,12 @@ For evaluation, we employ rigorous benchmarks to test generalization and advance
 \begin{itemize}
     \item \textbf{MATH-500:} A curated subset of 500 challenging problems from the MATH dataset test split.
     \item \textbf{AIME 2024 \& 2025:} Highly challenging sets of 30 problems each from the American Invitational Mathematics Examination.
-    \item \textbf{GPQA Diamond:} A highly challenging PhD-level benchmark containing 198 extremely difficult science questions.
+    \item \textbf{GPQA Diamond:} A highly challenging PhD-level benchmark \cite{rein2023gpqagraduatelevelgoogleproofqa} containing 198 extremely difficult science questions.
     \item \textbf{GSM8K:} Evaluated on the standard test split (1,319 questions) to ensure foundational reasoning arithmetic is maintained without correction bias.
 \end{itemize}
 % \clearpage
 
 \subsection{Experimental Setup}
-All experiments, including the training of our SB-GRPO models and all baseline comparisons (Vanilla GRPO, M-GRPO), are conducted under a unified, strictly controlled environment to ensure fair comparisons. We adopt \texttt{Qwen/}\allowbreak\texttt{Qwen2.5-7B-Instruct} as the foundational base model for all configurations. Due to memory constraints when concurrently running a 7B model and a generation engine, we apply 4-bit QLoRA (\texttt{load\_in\_4bit=True}, \texttt{use\_peft=True}) alongside DeepSpeed ZeRO-3 and Flash Attention 2 to optimize memory efficiency and computation speed. All training runs are executed on a single high-performance Linux server equipped with one NVIDIA H100 GPU (80GB VRAM). We train the models for 1 epoch with a learning rate of $1.0 \times 10^{-5}$. To maintain consistent memory usage, the maximum prompt length is constrained to 2048 tokens, and the completion length is capped at 1024 tokens. For each prompt, the model generates $N=8$ independent completions to construct the reasoning pool.
+All experiments, including the training of our SB-GRPO models and all baseline comparisons (Vanilla GRPO, M-GRPO), are conducted under a unified, strictly controlled environment to ensure fair comparisons. We adopt \texttt{Qwen/}\allowbreak\texttt{Qwen2.5-7B-Instruct} as the foundational base model for all configurations. Due to memory constraints when concurrently running a 7B model and a generation engine, we apply 4-bit QLoRA \cite{hu2021loralowrankadaptationlarge,dettmers2023qloraefficientfinetuningquantized} (\texttt{load\_in\_4bit=True}, \texttt{use\_peft=True}) alongside DeepSpeed ZeRO-3 and Flash Attention 2 to optimize memory efficiency and computation speed. All training runs are executed on a single high-performance Linux server equipped with one NVIDIA H100 GPU (80GB VRAM). We train the models for 1 epoch with a learning rate of $1.0 \times 10^{-5}$. To maintain consistent memory usage, the maximum prompt length is constrained to 2048 tokens, and the completion length is capped at 1024 tokens. For each prompt, the model generates $N=8$ independent completions to construct the reasoning pool.
 
 \textbf{Hardware-Aware Static Tensor Shaping:} To maximize GPU throughput on the NVIDIA H100 and completely mitigate memory fragmentation induced by variable sequence lengths, we strictly avoid dynamic padding. Building upon the variance reduction principles of DIVA-GRPO, we construct a Static Balanced Batch of a fixed size $S = 16$. Specifically, we sample $S/2$ trajectories from the Correct Pool and the remaining $S/2$ from the Top Error Cluster ($C_{\text{top}}$). By enforcing Sampling with Replacement, we guarantee that the tensor shape remains entirely constant across all training steps. This static geometric configuration minimizes memory allocation overhead, thereby fully maximizing the computational efficiency of the DeepSpeed ZeRO-3 backend under constrained VRAM environments.

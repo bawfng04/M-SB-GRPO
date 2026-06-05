@@ -22,6 +22,16 @@ Christiano, P.F., Leike, J., Brown, T.B., Martic, M., Legg, S., Amodei, D.:
   31st International Conference on Neural Information Processing Systems. p.
   4302–4310. NIPS'17, Curran Associates Inc., Red Hook, NY, USA (2017)
 
+\bibitem{cobbe2021trainingverifierssolvemath}
+Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert,
+  M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., Schulman, J.: Training
+  verifiers to solve math word problems (2021),
+  \url{https://arxiv.org/abs/2110.14168}
+
+\bibitem{dettmers2023qloraefficientfinetuningquantized}
+Dettmers, T., Pagnoni, A., Holtzman, A., Zettlemoyer, L.: Qlora: Efficient
+  finetuning of quantized llms (2023), \url{https://arxiv.org/abs/2305.14314}
+
 \bibitem{ding2025multilayergrpoenhancingreasoning}
 Ding, F., Wang, B., Zeng, Z., Wang, Y.: Multi-layer {GRPO}: Enhancing reasoning
   and self-correction in large language models (2025),
@@ -32,6 +42,16 @@ Gao, H., Zhang, Z., Pang, L., Guo, F., Dou, H., Lv, G., Liu, S., Gao, T., Shen,
   H., Cheng, X.: {DIVA-GRPO}: Enhancing multimodal reasoning through
   difficulty-adaptive variant advantage (2026),
   \url{https://arxiv.org/abs/2603.01106}
+
+\bibitem{hendrycks2021measuringmathematicalproblemsolving}
+Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song,
+  D., Steinhardt, J.: Measuring mathematical problem solving with the math
+  dataset (2021), \url{https://arxiv.org/abs/2103.03874}
+
+\bibitem{hu2021loralowrankadaptationlarge}
+Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L.,
+  Chen, W.: Lora: Low-rank adaptation of large language models (2021),
+  \url{https://arxiv.org/abs/2106.09685}
 
 \bibitem{Ji2024ReinforcementLF}
 Ji, K., He, J., Gu, Q.: Reinforcement learning from human feedback with active
@@ -53,6 +73,15 @@ Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon,
 Nan, G., Chen, S., Huang, J., Lu, M., Wang, D., Xie, C., Xiong, W., Zeng, X.,
   Zhou, Q., Li, Y., Xu, X.: {NGRPO}: Negative-enhanced group relative policy
   optimization (2025), \url{https://arxiv.org/abs/2509.18851}
+
+\bibitem{reimers2019sentencebertsentenceembeddingsusing}
+Reimers, N., Gurevych, I.: Sentence-bert: Sentence embeddings using siamese
+  bert-networks (2019), \url{https://arxiv.org/abs/1908.10084}
+
+\bibitem{rein2023gpqagraduatelevelgoogleproofqa}
+Rein, D., Hou, B.L., Stickland, A.C., Petty, J., Pang, R.Y., Dirani, J.,
+  Michael, J., Bowman, S.R.: Gpqa: A graduate-level google-proof q\&a benchmark
+  (2023), \url{https://arxiv.org/abs/2311.12022}
 
 \bibitem{schulman2017proximalpolicyoptimizationalgorithms}
 Schulman, J., Wolski, F., Dhariwal, P., Radford, A., Klimov, O.: Proximal

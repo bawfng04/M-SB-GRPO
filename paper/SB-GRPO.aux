@@ -31,6 +31,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Formal Derivation of SB-GRPO}{4}{subsection.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Heuristic Confidence Gate}{4}{subsection.3.2}\protected@file@percent }
 \newlabel{subsec:heuristic_gate}{{3.2}{4}{Heuristic Confidence Gate}{subsection.3.2}{}}
+\citation{reimers2019sentencebertsentenceembeddingsusing}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces SB-GRPO Training Step}}{5}{algorithm.1}\protected@file@percent }
 \newlabel{alg:training_step}{{1}{5}{Heuristic Confidence Gate}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Layered Generation and Reflection}{5}{subsection.3.3}\protected@file@percent }
@@ -40,6 +41,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Information-Theoretic Loss Scaling}{6}{subsection.3.5}\protected@file@percent }
 \newlabel{subsec:info-theoretic-loss}{{3.5}{6}{Information-Theoretic Loss Scaling}{subsection.3.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Semantic-Balanced GRPO Objective Function}{6}{subsection.3.6}\protected@file@percent }
+\citation{hendrycks2021measuringmathematicalproblemsolving}
+\citation{cobbe2021trainingverifierssolvemath}
+\citation{rein2023gpqagraduatelevelgoogleproofqa}
+\citation{hu2021loralowrankadaptationlarge,dettmers2023qloraefficientfinetuningquantized}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Datasets and Experimental Setup}{7}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{7}{subsection.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Training Data:}{7}{section*.2}\protected@file@percent }
@@ -48,16 +53,17 @@
 \citation{ding2025multilayergrpoenhancingreasoning}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Results}{8}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Performance Evaluation}{8}{subsection.5.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pass@1 Accuracy (\%) and absolute performance gains ($\Delta $) on Advanced Reasoning Benchmarks (1 Sample). $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}}{8}{table.1}\protected@file@percent }
-\newlabel{tab:main}{{1}{8}{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta $) on Advanced Reasoning Benchmarks (1 Sample). $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Analysis}{8}{subsection.5.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Absolute performance gains of SB-GRPO on MATH sub-categories. \textbf  {Top:} Compared to M-GRPO, where significant improvements in \textit  {Intermediate Algebra} (+4.88\%) and \textit  {Precalculus} (+5.68\%) demonstrate the effectiveness of semantic balancing in complex reasoning. \textbf  {Bottom:} Compared to Vanilla GRPO, highlighting the massive broad-spectrum improvements achieved by the reflection mechanism.}}{9}{figure.2}\protected@file@percent }
 \newlabel{fig:delta}{{2}{9}{Absolute performance gains of SB-GRPO on MATH sub-categories. \textbf {Top:} Compared to M-GRPO, where significant improvements in \textit {Intermediate Algebra} (+4.88\%) and \textit {Precalculus} (+5.68\%) demonstrate the effectiveness of semantic balancing in complex reasoning. \textbf {Bottom:} Compared to Vanilla GRPO, highlighting the massive broad-spectrum improvements achieved by the reflection mechanism}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pass@1 Accuracy (\%) and absolute performance gains ($\Delta $) on Advanced Reasoning Benchmarks (1 Sample). $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}}{10}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{10}{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta $) on Advanced Reasoning Benchmarks (1 Sample). $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively}{table.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pass@1 Accuracy (\%) and absolute performance gains ($\Delta $) on advanced reasoning benchmarks (averaged over 4 independent evaluation runs). $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}}{10}{table.2}\protected@file@percent }
 \newlabel{tab:pass4}{{2}{10}{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta $) on advanced reasoning benchmarks (averaged over 4 independent evaluation runs). $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively}{table.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO. $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}}{10}{table.3}\protected@file@percent }
-\newlabel{tab:math}{{3}{10}{MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO. $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Analysis}{10}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablation Analysis: Deconstructing the Performance Gains}{11}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablation Analysis: Deconstructing the Performance Gains}{10}{subsection.5.3}\protected@file@percent }
+\citation{hu2021loralowrankadaptationlarge,dettmers2023qloraefficientfinetuningquantized}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO. $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}}{11}{table.3}\protected@file@percent }
+\newlabel{tab:math}{{3}{11}{MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO. $\Delta _G$ and $\Delta _M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively}{table.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Discussion}{11}{subsection.5.4}\protected@file@percent }
 \bibstyle{splncs04}
 \bibdata{references}
@@ -65,15 +71,21 @@
 \bibcite{TheC3}{2}
 \bibcite{chen2025seedgrposemanticentropyenhanced}{3}
 \bibcite{10.5555/3294996.3295184}{4}
-\bibcite{ding2025multilayergrpoenhancingreasoning}{5}
-\bibcite{gao2026divagrpoenhancingmultimodalreasoning}{6}
-\bibcite{Ji2024ReinforcementLF}{7}
-\bibcite{kuhn2023semanticuncertaintylinguisticinvariances}{8}
+\bibcite{cobbe2021trainingverifierssolvemath}{5}
+\bibcite{dettmers2023qloraefficientfinetuningquantized}{6}
+\bibcite{ding2025multilayergrpoenhancingreasoning}{7}
+\bibcite{gao2026divagrpoenhancingmultimodalreasoning}{8}
+\bibcite{hendrycks2021measuringmathematicalproblemsolving}{9}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion and Future Work}{12}{section.6}\protected@file@percent }
-\bibcite{madaan2023selfrefineiterativerefinementselffeedback}{9}
-\bibcite{nan2025ngrponegativeenhancedgrouprelative}{10}
-\bibcite{schulman2017proximalpolicyoptimizationalgorithms}{11}
-\bibcite{shao2024deepseekmathpushinglimitsmathematical}{12}
-\bibcite{10.5555/3600270.3602070}{13}
-\bibcite{zhang2026trainlesslearnmore}{14}
+\bibcite{hu2021loralowrankadaptationlarge}{10}
+\bibcite{Ji2024ReinforcementLF}{11}
+\bibcite{kuhn2023semanticuncertaintylinguisticinvariances}{12}
+\bibcite{madaan2023selfrefineiterativerefinementselffeedback}{13}
+\bibcite{nan2025ngrponegativeenhancedgrouprelative}{14}
+\bibcite{reimers2019sentencebertsentenceembeddingsusing}{15}
+\bibcite{rein2023gpqagraduatelevelgoogleproofqa}{16}
+\bibcite{schulman2017proximalpolicyoptimizationalgorithms}{17}
+\bibcite{shao2024deepseekmathpushinglimitsmathematical}{18}
+\bibcite{10.5555/3600270.3602070}{19}
+\bibcite{zhang2026trainlesslearnmore}{20}
 \gdef \@abspage@last{13}
