@@ -1,10 +1,10 @@
 \section{Methodology}
-This section details the SB-GRPO architecture (Figure \ref{fig:pipeline}). To resolve GRPO instability, we introduce a Heuristic Confidence Gate (Sec.~\ref{subsec:heuristic_gate}) that dynamically routes uniform batches to NGRPO, preventing zero advantage. For mixed batches, Layered Generation and Reflection (Sec.~\ref{subsec:layer-generation-reflection}) and Semantic Error Profiling (Sec.~\ref{subsec:SEP}) cluster reasoning trajectories to target systematic failures. The gradients are modulated via an Information-Theoretic Loss Scaling factor (Sec.~\ref{subsec:info-theoretic-loss}) based on error entropy. The step-by-step integration of these modules into a cohesive training iteration is formalized in Algorithm~\ref{alg:training_step}.
+This section details the SB-GRPO architecture (Figure \ref{fig:pipeline}). To resolve GRPO instability, we introduce a Heuristic Confidence Gate (Sec.~\ref{subsec:heuristic_gate}) that dynamically routes uniform batches to use Advantage Calibration, preventing zero advantage. For mixed batches, Layered Generation and Reflection (Sec.~\ref{subsec:layer-generation-reflection}) and Semantic Error Profiling (Sec.~\ref{subsec:SEP}) cluster reasoning trajectories to target systematic failures. The gradients are modulated via an Information-Theoretic Loss Scaling factor (Sec.~\ref{subsec:info-theoretic-loss}) based on error entropy. The step-by-step integration of these modules into a cohesive training iteration is formalized in Algorithm~\ref{alg:training_step}.
 
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{SB-GRPO-pipelinev3.pdf}
-    \caption{The complete system architecture of SB-GRPO. The Heuristic Confidence Gate ($\Gamma$) dynamically routes uniform batches to the NGRPO module (Path A) to prevent advantage vanishing. For mixed batches (Path B), the framework applies Multi-Layer Reflection and Semantic Error Profiling (SEP) to extract the Top Error Cluster ($C_{top}$), forming a Static Balanced Batch optimized by an Entropy-Aware Loss Scaling factor ($\lambda$).}
+    \caption{The complete system architecture of SB-GRPO. The Heuristic Confidence Gate ($\Gamma$) dynamically routes uniform batches to the Advantage Calibration module (Path A) to prevent advantage vanishing. For mixed batches (Path B), the framework applies Multi-Layer Reflection and Semantic Error Profiling (SEP) to extract the Top Error Cluster ($C_{top}$), forming a Static Balanced Batch optimized by an Entropy-Aware Loss Scaling factor ($\lambda$).}
     \label{fig:pipeline}
 \end{figure*}
 
@@ -16,11 +16,18 @@ To maintain gradient continuity, we define a differentiable heuristic gating fun
 \begin{equation}
 \Gamma(R) = 4R(1-R)
 \end{equation}
-Note that $\Gamma \in [0, 1]$, reaching $0$ at $R=0$ (all wrong) or $R=1$ (all correct), and $1$ at $R=0.5$. This parabolic form ensures that purely correct or incorrect batches seamlessly switch to pure NGRPO loss, while balanced batches optimally utilize multi-layer reflection without gradient spikes. This gate selects the advantage calculation method:
+Note that $\Gamma \in [0, 1]$, reaching $0$ at $R=0$ (all wrong) or $R=1$ (all correct), and $1$ at $R=0.5$. This parabolic form ensures that purely correct or incorrect batches seamlessly switch to Calibrated Advantage loss, while balanced batches optimally utilize multi-layer reflection without gradient spikes. This gate selects the advantage calculation method:
 \begin{equation}
-A_i = \Gamma \cdot A_{\text{std}, i} + (1-\Gamma) \cdot A_{\text{ngrpo}, i}
+A_i = \Gamma \cdot A_{\text{std}, i} + (1-\Gamma) \cdot A_{\text{calib}, i}
 \end{equation}
-where $A_{\text{ngrpo}}$ uses a virtual reward $r_{\text{virtual}} = 1$ to inject a negative signal even when all $r_i=0$. Injecting this virtual reward increases the mean $\mu$, which in turn pushes the $A_{\text{std},i}=(r_i-\mu)/\sigma$ of incorrect samples into explicitly negative values rather than leaving them stuck at 0. The standard advantage is computed as $A_{\text{std}, i} = (r_i - \mu) / \sigma$, where $\mu$ and $\sigma$ are the mean and standard deviation of rewards within the group. When variance approaches zero, $A_{\text{std}}$ approaches zero, making $A_{\text{ngrpo}}$ critical for continuous training. Conversely, when $R=1$ (all correct), injecting $r_{\text{virtual}}=1$ maintains a zero advantage, correctly signaling that no policy update is required for an already mastered prompt.
+where $A_{\text{calib}}$ uses a virtual reward $r_{\text{virtual}} = 1$ to inject a negative signal even when all $r_i=0$. Injecting this virtual reward increases the mean $\mu$, which in turn pushes the $A_{\text{std},i}=(r_i-\mu)/\sigma$ of incorrect samples into explicitly negative values rather than leaving them stuck at 0. The standard advantage is computed as $A_{\text{std}, i} = (r_i - \mu) / \sigma$, where $\mu$ and $\sigma$ are the mean and standard deviation of rewards within the group. When variance approaches zero, $A_{\text{std}}$ approaches zero, making $A_{\text{calib}}$ critical for continuous training. Conversely, when $R=1$ (all correct), injecting $r_{\text{virtual}}=1$ maintains a zero advantage, correctly signaling that no policy update is required for an already mastered prompt.
+
+To illustrate the practical effect of this adaptive mechanism, consider a sample size of $N=8$:
+\begin{itemize}
+    \item \textbf{Case 1: Homogeneous-Incorrect ($0$ correct, $8$ wrong, $R=0$).} The gate yields $\Gamma=0$. Standard GRPO would provide $A_{\text{std}}=0$ for all samples, halting the learning process. By routing purely to Advantage Calibration, our framework injects $r_{\text{virtual}}=1$, producing an augmented mean $\mu' \approx 0.11$ and $\sigma' \approx 0.31$. This assigns a meaningful negative advantage $A \approx -0.35$ to all incorrect samples, forcing the model to explore new reasoning paths.
+    \item \textbf{Case 2: Low-Accuracy Mixed ($1$ correct, $7$ wrong, $R=0.125$).} The gate yields $\Gamma=0.4375$. Standard GRPO assigns an overly aggressive reward to the single correct sample ($A_{\text{std}} \approx +2.65$) and a weak penalty to the wrong ones ($A_{\text{std}} \approx -0.38$). Our dynamically routed advantage rebalances these to $A_{\text{correct}} \approx +2.21$ and $A_{\text{wrong}} \approx -0.47$. This dampens the variance of lucky guesses while increasing the penalty for failures, strongly promoting exploration when accuracy is low.
+    \item \textbf{Case 3: High-Accuracy Mixed ($7$ correct, $1$ wrong, $R=0.875$).} The gate yields $\Gamma=0.4375$. Standard GRPO computes $A_{\text{std}} \approx +0.38$ for correct and $-2.65$ for incorrect samples. Our routed advantage minimally shifts these to $+0.36$ and $-2.75$, respectively. In this high-accuracy scenario, the mechanism makes minimal adjustments, stably favoring exploitation while maintaining a strict penalty for the rare failure.
+\end{itemize}
 
 \begin{algorithm}
 \caption{SB-GRPO Training Step}
@@ -37,7 +44,7 @@ where $A_{\text{ngrpo}}$ uses a virtual reward $r_{\text{virtual}} = 1$ to injec
     \STATE $B \gets$ Sample $S/2$ from $P_{correct}$ and $S/2$ from $C_{top}$ (with replacement)
 \ELSE
     \STATE $\lambda \gets 1.0$, $B \gets$ Sample $S$ uniformly from $O$ (with replacement)
-    \STATE Use NGRPO Virtual Advantage $A_{ngrpo}$
+    \STATE Use Calibrated Advantage $A_{calib}$
 \ENDIF
 \STATE \textbf{Training Phase:}
 \STATE Flush vLLM cache $\to$ Init PyTorch Trainer
@@ -57,7 +64,7 @@ Rather than relying on a single-pass generation, SB-GRPO isolates the exploratio
 
 
 \subsection{Semantic Error Profiling (SEP)}\label{subsec:SEP}
-To effectively disambiguate structural reasoning flaws from superficial generation noise, the SEP module projects all incorrect trajectories into a dense semantic space. Specifically, incorrect samples are vectorized utilizing a frozen \textit{all-MiniLM-L6-v2} encoder \cite{reimers2019sentencebertsentenceembeddingsusing}. Subsequently, K-Means clustering ($K=4$) is applied to partition these latent embeddings into a discrete set of semantic clusters $C = \{C_1, \dots, C_K\}$. By identifying the top error cluster, defined mathematically as $C_{top} = \arg\max_k |C_k|$, we isolate the most prevalent logical failure mode associated with the given prompt. This isolation provides a concentrated learning signal for targeted error correction, ensuring the policy optimizes against systematic misconceptions rather than stochastic, trivial errors.
+To effectively disambiguate structural reasoning flaws from superficial generation noise, the SEP module projects all incorrect trajectories into a dense semantic space. Specifically, incorrect samples are vectorized utilizing a frozen \textit{all-MiniLM-L6-v2} encoder \cite{reimers2019sentencebertsentenceembeddingsusing}. Subsequently, K-Means clustering (empirically set to $K=4$) is applied to partition these latent embeddings into a discrete set of semantic clusters $C = \{C_1, \dots, C_K\}$. By identifying the top error cluster, defined mathematically as $C_{top} = \arg\max_k |C_k|$, we isolate the most prevalent logical failure mode associated with the given prompt. This isolation provides a concentrated learning signal for targeted error correction, ensuring the policy's optimization against systematic misconceptions rather than stochastic, trivial errors.
 \subsection{Information-Theoretic Loss Scaling}\label{subsec:info-theoretic-loss}
 To mathematically quantify the epistemic uncertainty inherent in the model's failure modes, we compute the Shannon Entropy $H$ over the semantic cluster distribution. Let $p_k = |C_k| / \sum_{j=1}^K |C_j|$ denote the probability mass of the $k$-th cluster. The entropy is defined as:
 \begin{equation}

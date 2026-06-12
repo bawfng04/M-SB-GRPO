@@ -36,7 +36,7 @@ def generate_chart(base_name, base_data, title, output_png):
     )
     
     max_x = max(sorted_deltas) * 1.2
-    min_x = -0.15 * max_x
+    min_x = min(min(sorted_deltas) * 1.2, -max_x * 0.02)
     
     for i, (bar, delta) in enumerate(zip(bars, sorted_deltas)):
         if delta >= 0:
@@ -45,8 +45,8 @@ def generate_chart(base_name, base_data, title, output_png):
             x_pos = delta + offset
         else:
             offset = max_x * 0.015
-            ha = "right"
-            x_pos = delta - offset
+            ha = "left"
+            x_pos = offset
             
         color = pos_color if delta > 0 else neg_color
         sign = "+" if delta > 0 else ""

@@ -5,18 +5,18 @@ All models were evaluated using the \texttt{lighteval} framework on the exact sa
 
 \begin{table}[ht]
 \centering
-\caption{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta$) on Advanced Reasoning Benchmarks (1 Sample). $\Delta_G$ and $\Delta_M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}
+\caption{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta$) on Advanced Reasoning Benchmarks (1 Sample). $\Delta_{S-V}$ and $\Delta_{S-M}$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}
 \label{tab:main}
 \small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
 \toprule
 & \multicolumn{3}{c}{Accuracy (\%)} & \multicolumn{2}{c}{Absolute Gains (\%)} \\
 \cmidrule(lr){2-4} \cmidrule(lr){5-6}
-Dataset & Vanilla & M-GRPO & \textbf{SB-GRPO} & $\Delta_G$ & $\Delta_M$ \\
+Dataset & Vanilla & M-GRPO & \textbf{SB-GRPO} & $\Delta_{S-V}$ & $\Delta_{S-M}$ \\
 \midrule
 MATH-500      & 48.40 & 72.60 & \textbf{74.80} & \textbf{+26.40} & \textbf{+2.20} \\
 AIME 2024     & 3.33  & 6.67  & \textbf{10.00} & \textbf{+6.67}  & \textbf{+3.33} \\
-AIME 2025     & 3.33  & \textbf{6.67}  & \textbf{6.67}  & \textbf{+3.34}  & 0.00 \\
+AIME 2025     & 3.33  & \textbf{6.67}  & \textbf{6.67}  & \textbf{+3.34}  & 0 \\
 GPQA Diamond  & 30.30 & 31.82 & \textbf{32.83} & \textbf{+2.53}  & \textbf{+1.01} \\
 GSM8K         & 56.33 & \textbf{70.51} & 69.22 & \textbf{+12.89} & -1.29 \\
 \bottomrule
@@ -25,14 +25,14 @@ GSM8K         & 56.33 & \textbf{70.51} & 69.22 & \textbf{+12.89} & -1.29 \\
 
 \begin{table}[ht]
 \centering
-\caption{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta$) on advanced reasoning benchmarks (averaged over 4 independent evaluation runs). $\Delta_G$ and $\Delta_M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}
+\caption{Pass@1 Accuracy (\%) and absolute performance gains ($\Delta$) on advanced reasoning benchmarks (averaged over 4 independent evaluation runs). $\Delta_{S-V}$ and $\Delta_{S-M}$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}
 \label{tab:pass4}
 \small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
 \toprule
 & \multicolumn{3}{c}{Accuracy (\%)} & \multicolumn{2}{c}{Absolute Gains (\%)} \\
 \cmidrule(lr){2-4} \cmidrule(lr){5-6}
-Dataset & Vanilla & M-GRPO & \textbf{SB-GRPO} & $\Delta_G$ & $\Delta_M$ \\
+Dataset & Vanilla & M-GRPO & \textbf{SB-GRPO} & $\Delta_{S-V}$ & $\Delta_{S-M}$ \\
 \midrule
 MATH-500      & 47.60 & 72.30 & \textbf{75.65} & \textbf{+28.05} & \textbf{+3.35} \\
 AIME 2024     & 1.67  & 10.83 & \textbf{12.50} & \textbf{+10.83} & \textbf{+1.67} \\
@@ -44,14 +44,14 @@ GPQA Diamond  & 28.91 & 29.42 & \textbf{33.08} & \textbf{+4.17}  & \textbf{+3.66
 
 \begin{table}[ht]
 \centering
-\caption{MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO. $\Delta_G$ and $\Delta_M$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}
+\caption{MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO, and SB-GRPO. $\Delta_{S-V}$ and $\Delta_{S-M}$ denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.}
 \label{tab:math}
 \small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
 \toprule
 & \multicolumn{3}{c}{Accuracy (\%)} & \multicolumn{2}{c}{Absolute Gains (\%)} \\
 \cmidrule(lr){2-4} \cmidrule(lr){5-6}
-Category & Vanilla & M-GRPO & \textbf{SB-GRPO} & $\Delta_G$ & $\Delta_M$ \\
+Category & Vanilla & M-GRPO & \textbf{SB-GRPO} & $\Delta_{S-V}$ & $\Delta_{S-M}$ \\
 \midrule
 Algebra                     & 62.01 & \textbf{89.39} & 89.13 & \textbf{+27.12} & -0.26 \\
 Counting \& Probability     & 43.25 & 64.56 & \textbf{67.09} & \textbf{+23.84} & \textbf{+2.53} \\
@@ -77,7 +77,7 @@ Precalculus                 & 24.54 & 51.28 & \textbf{56.96} & \textbf{+32.42} &
 \subsection{Analysis}
 The results show that SB-GRPO's strength lies in high-complexity reasoning. In the MATH-500 dataset, our method provides a 2.20\% absolute gain over M-GRPO (and 3.35\% in 4-sample evaluation). Furthermore, on the elite-level AIME 2024 benchmark, SB-GRPO achieves up to 12.50\% accuracy, doubling the performance of M-GRPO (10.83\%) and massively outperforming Vanilla GRPO (1.67\%). Crucially, on the extremely difficult GPQA Diamond benchmark (PhD-level science questions), SB-GRPO achieves 33.08\%, a +3.66\% gain over M-GRPO. This proves that semantic error profiling is highly effective not just for math, but for broad scientific reasoning.
 
-As shown in the broader MATH validation set analysis (Table \ref{tab:math}), SB-GRPO yields the most significant improvements in sub-categories requiring deep, multi-step logical derivations, such as Intermediate Algebra (+4.88\%) and Precalculus (+5.68\%). For simpler or saturated categories like Algebra ($\sim$89\%), the semantic profiling dampens unnecessary reflections, maintaining performance parity (-0.25\%). This is largely due to the Targeted Error Correction provided by SEP, proving that K-Means clustering effectively addresses underlying systematic errors rather than just applying pattern matching.
+As shown in the broader MATH validation set analysis (Table \ref{tab:math}), SB-GRPO exhibits its most substantial advantages in high-complexity disciplines that demand rigorous, multi-stage deduction—notably Precalculus (+5.68\%) and Intermediate Algebra (+4.88\%). For simpler or saturated categories like Algebra ($\sim$89\%), the semantic profiling dampens unnecessary reflections, maintaining performance parity (-0.25\%). This is largely due to the Targeted Error Correction provided by SEP, proving that K-Means clustering effectively addresses underlying systematic errors rather than just applying pattern matching.
 
 \subsection{Ablation Analysis: Deconstructing the Performance Gains}
 Because our method builds upon fundamental RL and reflection techniques, our primary baselines inherently serve as functional ablations of the complete SB-GRPO pipeline. By analyzing the performance deltas in Table \ref{tab:main}, we can isolate the contributions of specific modules:
