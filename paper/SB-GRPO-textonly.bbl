@@ -75,8 +75,8 @@ Nan, G., Chen, S., Huang, J., Lu, M., Wang, D., Xie, C., Xiong, W., Zeng, X.,
   optimization (2025), \url{https://arxiv.org/abs/2509.18851}
 
 \bibitem{reimers2019sentencebertsentenceembeddingsusing}
-Reimers, N., Gurevych, I.: Sentence-bert: Sentence embeddings using siamese
-  bert-networks (2019), \url{https://arxiv.org/abs/1908.10084}
+Reimers, N., Gurevych, I.: {Sentence-BERT}: Sentence embeddings using siamese
+  {BERT}-networks (2019), \url{https://arxiv.org/abs/1908.10084}
 
 \bibitem{rein2023gpqagraduatelevelgoogleproofqa}
 Rein, D., Hou, B.L., Stickland, A.C., Petty, J., Pang, R.Y., Dirani, J.,
