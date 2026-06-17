@@ -10,6 +10,12 @@ M-SB-GRPO_Server_Ready.zip
 docs/*.md
 docs/papers-txt/
 
+# Dataset
+data/datasets/requested
+
+# checkpoint
+compare/A-MSB-GRPO-E/A-MSB-GRPO-E/checkpoints
+compare/A-MSB-GRPO-E/checkpoint
 # C extensions
 *.so
 

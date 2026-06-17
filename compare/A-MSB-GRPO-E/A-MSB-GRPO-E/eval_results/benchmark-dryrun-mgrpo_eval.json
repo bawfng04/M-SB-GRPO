@@ -1,0 +1,63 @@
+{
+  "benchmark": "benchmark-dryrun-mgrpo",
+  "datasets": {
+    "aime24": {
+      "dataset": "aime24",
+      "total_records": 16,
+      "total_questions": 4,
+      "total_correct": 9,
+      "accuracy": 0.5625,
+      "pass_at_k": {
+        "pass@1": 0.5625,
+        "pass@2": 0.8333333333333334,
+        "pass@4": 1.0
+      },
+      "method": "mgrpo"
+    },
+    "amc23": {
+      "dataset": "amc23",
+      "total_records": 16,
+      "total_questions": 4,
+      "total_correct": 9,
+      "accuracy": 0.5625,
+      "pass_at_k": {
+        "pass@1": 0.5625,
+        "pass@2": 0.8333333333333334,
+        "pass@4": 1.0
+      },
+      "method": "mgrpo"
+    },
+    "gsm8k": {
+      "dataset": "gsm8k",
+      "total_records": 16,
+      "total_questions": 4,
+      "total_correct": 11,
+      "accuracy": 0.6875,
+      "pass_at_k": {
+        "pass@1": 0.6875,
+        "pass@2": 0.875,
+        "pass@4": 1.0
+      },
+      "method": "mgrpo"
+    },
+    "math_500": {
+      "dataset": "math_500",
+      "total_records": 16,
+      "total_questions": 4,
+      "total_correct": 11,
+      "accuracy": 0.6875,
+      "pass_at_k": {
+        "pass@1": 0.6875,
+        "pass@2": 0.9166666666666667,
+        "pass@4": 1.0
+      },
+      "method": "mgrpo"
+    }
+  },
+  "overall": {
+    "method": "mgrpo",
+    "total_correct": 40,
+    "total_records": 64,
+    "overall_accuracy": 0.625
+  }
+}
