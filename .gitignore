@@ -214,3 +214,6 @@ marimo/_lsp/
 __marimo__/
 M-SB-GRPO_Server_Ready.zip
 id_rsa
+config
+config_old
+config.txt
