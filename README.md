@@ -1,80 +1,80 @@
-# 🔬 M-SB-GRPO (Adaptive Multi-Layer Semantic-Balanced GRPO)
+# M-SB-GRPO (Adaptive Multi-Layer Semantic-Balanced GRPO)
 
-Dự án này là một hệ thống huấn luyện Reinforcement Learning (RL) tiên tiến dành cho Mô hình Ngôn ngữ Lớn (LLM), tập trung vào khả năng tự sửa lỗi (Self-Correction) trong các tác vụ suy luận toán học. Dự án hiện thực hóa kiến trúc **M-SB-GRPO** (còn gọi là A-MSB-GRPO), một giải pháp đột phá khắc phục 3 nhược điểm lớn của GRPO truyền thống: Suy biến Gradient (Advantage Vanishing), Thiên kiến sửa lỗi (Correction Bias), và Phân mảnh bộ nhớ (Memory Fragmentation).
-
----
-
-## 🏛️ 1. Kiến trúc M-SB-GRPO cốt lõi
-
-Kiến trúc **Adaptive Multi-Layer Semantic-Balanced GRPO** là sự kết hợp hoàn hảo các lý thuyết tối ưu hóa từ 3 bài báo nền tảng: *Multi-Layer GRPO*, *SEED-GRPO*, và định lý toán học 50/50 từ *DIVA-GRPO*. Hệ thống hoạt động qua 3 giai đoạn:
-
-### Giai đoạn 1: Khởi tạo và Ổn định (Base Generation)
-- **High-Throughput Rollout:** Tại Layer 1, mô hình sinh song song $N$ mẫu kết quả độc lập qua engine vLLM. 
-- **NGRPO (Negative-enhanced GRPO):** Nếu Batch cực đoan (0% đúng hoặc 100% đúng), quá trình chuyển tiếp sang Layer 2 bị hủy. Hệ thống kích hoạt thuật toán NGRPO với phần thưởng ảo (Virtual Reward) để hiệu chuẩn Advantage, duy trì không gian hàm Loss liên tục.
-- **Chống Correction Bias:** Nếu Batch có kết quả hỗn hợp, **toàn bộ** Batch được chuyển sang Layer 2 để tránh việc mô hình hình thành phản xạ thay đổi đáp án một cách máy móc.
-
-### Giai đoạn 2: Tự đánh giá và Gom cụm lỗi (Self-Reflection & Profiling)
-- **Augmented Sampling:** Mỗi mẫu ở Layer 1 sinh ra $M$ nhánh hiệu chỉnh với System Prompt yêu cầu tự kiểm tra lại logic.
-- **Semantic Error Profiling (Học thuyết SEED):** Các mẫu có đáp án sai (Error Pool) được nhúng (embed) thành vector bằng mô hình `all-MiniLM-L6-v2` (chạy trên CPU) và gom cụm bằng **K-Means Clustering**. 
-- Hệ thống trích xuất **Top Error Cluster** (Cụm lỗi chiếm tỷ trọng lớn nhất) – đại diện cho "lỗi hệ thống" nguy hiểm nhất mà mô hình đang tin là đúng.
-
-### Giai đoạn 3: Tensor tĩnh và Tối ưu hóa (Tensor Shaping & Policy Update)
-- **Static Balanced Batching (Học thuyết DIVA):** Hệ thống dùng kỹ thuật "Lấy mẫu có hoàn lại" (Sampling with Replacement) để ép khuôn một Tensor huấn luyện kích thước tĩnh $K$ (ví dụ: $K=16$) với **tỷ lệ vàng 50/50**: 50% từ Correct Pool và 50% từ Top Error Cluster. Việc này tối đa hóa độ lớn của Gradient Update (theo Theorem C.3 của DIVA-GRPO) và chống phân mảnh VRAM.
-- **Continuous Loss Scaling:** Tính Shannon Entropy ($H$) của phân phối các cụm lỗi. Hệ số $Scale = e^{-H}$ được nhân trực tiếp vào hàm Loss. Khi Entropy thấp (mô hình mắc lỗi hệ thống), hàm Loss được tối đa hóa để "đấm" mạnh vào lỗi sai. Khi Entropy cao (mô hình đoán mò ngẫu nhiên), hàm Loss bị triệt tiêu để chống sụp đổ trọng số.
+This project is an advanced Reinforcement Learning (RL) training system for Large Language Models (LLMs), focusing on self-correction capabilities in mathematical reasoning tasks. The project implements the M-SB-GRPO architecture (also known as A-MSB-GRPO), a breakthrough solution that overcomes three major drawbacks of traditional GRPO: Advantage Vanishing, Correction Bias, and Memory Fragmentation.
 
 ---
 
-## 📊 2. Các Baselines So sánh
+## 1. Core M-SB-GRPO Architecture
 
-Để chứng minh sự vượt trội của phương pháp chủ động "xây dựng batch cân bằng ngữ nghĩa" trong M-SB-GRPO, dự án đối chiếu trực tiếp với 3 Baselines:
+The Adaptive Multi-Layer Semantic-Balanced GRPO architecture is a combination of optimization theories from three foundational papers: Multi-Layer GRPO, SEED-GRPO, and the 50/50 mathematical theorem from DIVA-GRPO. The system operates through 3 phases:
 
-1. **Vanilla GRPO:** Kiến trúc nền tảng 1 lớp (theo DeepSeekMath). Không có cơ chế tự sửa lỗi và không cân bằng. Được dùng làm điểm khởi đầu.
-2. **MGRPO (Multi-Layer GRPO):** Kiến trúc 2 lớp. Layer 2 lấy mẫu **ngẫu nhiên** để sửa lỗi (không có gom cụm, không cân bằng). Baseline này dùng để chứng minh sự ưu việt của "cân bằng batch thông minh" so với "sửa lỗi ngẫu nhiên".
-3. **SEED-GRPO:** Kiến trúc 1 lớp, dùng Semantic Entropy để giảm trọng số advantage một cách **thụ động**. Baseline này dùng để so sánh giữa việc "chủ động tạo môi trường học" (M-SB-GRPO) so với "thụ động điều chỉnh trọng số".
+### Phase 1: Base Generation and Stabilization
+- High-Throughput Rollout: At Layer 1, the model generates N independent sample results in parallel via the vLLM engine.
+- NGRPO (Negative-enhanced GRPO): If a batch is extreme (0% correct or 100% correct), the transition to Layer 2 is canceled. The system activates the NGRPO algorithm with a Virtual Reward to calibrate the Advantage, maintaining a continuous loss function space.
+- Anti-Correction Bias: If the batch has mixed results, the entire batch is forwarded to Layer 2 to prevent the model from forming a mechanical reflex of simply changing answers.
+
+### Phase 2: Self-Reflection and Profiling
+- Augmented Sampling: Each sample at Layer 1 generates M correction branches with a System Prompt requesting logical self-verification.
+- Semantic Error Profiling (SEED Theory): Samples with incorrect answers (Error Pool) are embedded into vectors using the `all-MiniLM-L6-v2` model (running on CPU) and clustered using K-Means Clustering.
+- The system extracts the Top Error Cluster (the error cluster with the largest proportion) - representing the most dangerous "systematic error" that the model currently believes to be correct.
+
+### Phase 3: Static Tensor and Optimization (Tensor Shaping & Policy Update)
+- Static Balanced Batching (DIVA Theory): The system uses "Sampling with Replacement" to shape a training tensor of static size K (e.g., K=16) with a golden ratio of 50/50: 50% from the Correct Pool and 50% from the Top Error Cluster. This maximizes the magnitude of the Gradient Update (according to Theorem C.3 of DIVA-GRPO) and prevents VRAM fragmentation.
+- Continuous Loss Scaling: Calculate the Shannon Entropy (H) of the error cluster distribution. The scaling factor Scale = e^(-H) is multiplied directly into the Loss function. When Entropy is low (the model makes systematic errors), the Loss function is maximized to hit the error hard. When Entropy is high (the model guesses randomly), the Loss function is suppressed to prevent weight collapse.
 
 ---
 
-## 📚 3. Tập dữ liệu & Benchmarks (Datasets)
+## 2. Comparison Baselines
 
-- **Huấn luyện:** Tập tin hợp đồng dữ liệu `combined_train.parquet` chứa các problem và lời giải chuẩn.
-- **Đánh giá (Benchmarks):** Kiểm thử trên các bộ dữ liệu Toán học khắt khe nhất: **MATH-500**, **GSM8K**, **AIME 2024/2025**, và **OlympiadBench**.
-- **Metrics:** Thu thập tự động các chỉ số Pass@1, Pass@2, Pass@4, Pass@8.
+To demonstrate the superiority of the proactive "semantic-balanced batch construction" method in M-SB-GRPO, the project compares directly against 3 Baselines:
+
+1. Vanilla GRPO: A foundational 1-layer architecture (following DeepSeekMath). No self-correction mechanism and no balancing. Used as a starting point.
+2. MGRPO (Multi-Layer GRPO): A 2-layer architecture. Layer 2 samples randomly for error correction (no clustering, no balancing). This baseline is used to prove the superiority of "smart batch balancing" over "random error correction".
+3. SEED-GRPO: A 1-layer architecture, using Semantic Entropy to passively reduce advantage weights. This baseline is used to compare "proactive learning environment creation" (M-SB-GRPO) versus "passive weight adjustment".
 
 ---
 
-## ⚙️ 4. Chi tiết Implement (Nền tảng H100 Server)
+## 3. Datasets and Benchmarks
 
-Mọi pipeline đều được ép chạy chung một bộ cấu hình nghiêm ngặt để đảm bảo sự công bằng tuyệt đối trong thực nghiệm:
+- Training: The combined data file `combined_train.parquet` contains problems and standard solutions.
+- Evaluation (Benchmarks): Testing on the most rigorous Math datasets: MATH-500, GSM8K, AIME 2024/2025, and OlympiadBench.
+- Metrics: Automatically collect Pass@1, Pass@2, Pass@4, Pass@8 metrics.
 
-- **Phần cứng:** 1x GPU NVIDIA H100 (80GB VRAM).
-- **Mô hình nền:** `Qwen/Qwen2.5-7B-Instruct`.
-- **Tối ưu hóa tài nguyên:** 
-  - **4-bit QLoRA** (`use_peft=True`, `load_in_4bit=True`).
-  - Tích hợp **vLLM** làm generation engine (Cấp phát 30% VRAM GPU).
-  - Tích hợp DeepSpeed ZeRO-3 và Flash Attention 2.
-- **Siêu tham số (Fair Comparison):** 
+---
+
+## 4. Implementation Details (H100 Server Platform)
+
+All pipelines are forced to run under a strict shared configuration suite to ensure absolute fairness in experiments:
+
+- Hardware: 1x NVIDIA H100 GPU (80GB VRAM).
+- Base Model: `Qwen/Qwen2.5-7B-Instruct`.
+- Resource Optimization:
+  - 4-bit QLoRA (`use_peft=True`, `load_in_4bit=True`).
+  - Integrated vLLM as the generation engine (Allocating 30% GPU VRAM).
+  - Integrated DeepSpeed ZeRO-3 and Flash Attention 2.
+- Hyperparameters (Fair Comparison):
   - Epochs: 1
   - Learning Rate: 1.0e-05.
   - Prompt Length = 2048, Completion = 1024.
-  - Generative Rollouts: 8 câu trả lời/prompt.
+  - Generative Rollouts: 8 completions/prompt.
 
 ---
 
-## 🚀 5. Hướng dẫn sử dụng nhanh
+## 5. Quick Start Guide
 
-Pipeline được điều phối 100% tự động qua hệ thống Bash script.
+The pipeline is 100% automatically orchestrated via Bash scripts.
 
-**Khởi chạy Huấn luyện cho Baselines (Vanilla, MGRPO, SEED):**
+Run Training for Baselines (Vanilla, MGRPO, SEED):
 ```bash
 cd compare/open-r1
 ./scripts/run_baselines_h100.sh
 ```
 
-**Tổng hợp và Visualize Kết quả:**
+Aggregate and Visualize Results:
 ```bash
-# Tổng hợp các bảng summary
+# Aggregate summary tables
 python compare/run_compare_pipeline.py --config compare/pipeline.h100.compare.yaml --stage collect
 
-# Trích xuất biểu đồ tự động
+# Extract charts automatically
 python compare/run_compare_pipeline.py --config compare/pipeline.h100.compare.yaml --stage chart --metric pass@1
 ```
