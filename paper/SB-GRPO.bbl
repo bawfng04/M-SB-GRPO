@@ -37,11 +37,23 @@ Ding, F., Wang, B., Zeng, Z., Wang, Y.: Multi-layer {GRPO}: Enhancing reasoning
   and self-correction in large language models (2025),
   \url{https://arxiv.org/abs/2506.04746}
 
+\bibitem{Fran_ois_Lavet_2018}
+François-Lavet, V., Henderson, P., Islam, R., Bellemare, M.G., Joelle, P.: An
+  introduction to deep reinforcement learning. Foundations and Trends® in
+  Machine Learning  \textbf{11}(3-4),  219–354 (Dec 2018).
+  \doi{10.1561/2200000071}, \url{http://dx.doi.org/10.1561/2200000071}
+
 \bibitem{gao2026divagrpoenhancingmultimodalreasoning}
 Gao, H., Zhang, Z., Pang, L., Guo, F., Dou, H., Lv, G., Liu, S., Gao, T., Shen,
   H., Cheng, X.: {DIVA-GRPO}: Enhancing multimodal reasoning through
   difficulty-adaptive variant advantage (2026),
   \url{https://arxiv.org/abs/2603.01106}
+
+\bibitem{Guo_2025}
+Guo, D., Yang, D., Zhang, et~al.: Deepseek-r1 incentivizes reasoning in llms
+  through reinforcement learning. Nature  \textbf{645}(8081),  633–638
+  (2025). \doi{10.1038/s41586-025-09422-z},
+  \url{http://dx.doi.org/10.1038/s41586-025-09422-z}
 
 \bibitem{hendrycks2021measuringmathematicalproblemsolving}
 Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song,
@@ -74,6 +86,13 @@ Nan, G., Chen, S., Huang, J., Lu, M., Wang, D., Xie, C., Xiong, W., Zeng, X.,
   Zhou, Q., Li, Y., Xu, X.: {NGRPO}: Negative-enhanced group relative policy
   optimization (2025), \url{https://arxiv.org/abs/2509.18851}
 
+\bibitem{ouyang2022traininglanguagemodelsfollow}
+Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C.L., Mishkin, P.,
+  Zhang, C., Agarwal, S., Slama, K., Ray, A., Schulman, J., Hilton, J., Kelton,
+  F., Miller, L., Simens, M., Askell, A., Welinder, P., Christiano, P., Leike,
+  J., Lowe, R.: Training language models to follow instructions with human
+  feedback (2022), \url{https://arxiv.org/abs/2203.02155}
+
 \bibitem{reimers2019sentencebertsentenceembeddingsusing}
 Reimers, N., Gurevych, I.: {Sentence-BERT}: Sentence embeddings using siamese
   {BERT}-networks (2019), \url{https://arxiv.org/abs/1908.10084}
@@ -82,6 +101,12 @@ Reimers, N., Gurevych, I.: {Sentence-BERT}: Sentence embeddings using siamese
 Rein, D., Hou, B.L., Stickland, A.C., Petty, J., Pang, R.Y., Dirani, J.,
   Michael, J., Bowman, S.R.: {GPQA}: A graduate-level google-proof q\&a
   benchmark (2023), \url{https://arxiv.org/abs/2311.12022}
+
+\bibitem{article}
+Sarasvananda, I.B., Wardoyo, R., Sari, A.: The k-means clustering algorithm
+  with semantic similarity to estimate the cost of hospitalization. IJCCS
+  (Indonesian Journal of Computing and Cybernetics Systems)  \textbf{13}, ~313
+  (10 2019). \doi{10.22146/ijccs.45093}
 
 \bibitem{schulman2017proximalpolicyoptimizationalgorithms}
 Schulman, J., Wolski, F., Dhariwal, P., Radford, A., Klimov, O.: Proximal
@@ -92,6 +117,11 @@ Shao, Z., Wang, P., Zhu, Q., Xu, R., Song, J., Bi, X., Zhang, H., Zhang, M.,
   Li, Y.K., Wu, Y., Guo, D.: {DeepSeekMath}: Pushing the limits of mathematical
   reasoning in open language models (2024),
   \url{https://arxiv.org/abs/2402.03300}
+
+\bibitem{su2026sftgrpodataoverlapposttraining}
+Su, X., Zhang, K., Lyu, A.: Sft-grpo data overlap as a post-training
+  hyperparameter for autoformalization (2026),
+  \url{https://arxiv.org/abs/2604.13515}
 
 \bibitem{10.5555/3600270.3602070}
 Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E.H.,

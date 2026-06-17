@@ -10,6 +10,8 @@ M-SB-GRPO addresses three critical bottlenecks observed in conventional GRPO met
 
 ## 1. Methodology and Architecture
 
+![M-SB-GRPO Pipeline Architecture](paper/SB-GRPO-pipeline.png)
+
 The proposed architecture operates sequentially across three distinct phases to ensure optimal policy updates and continuous loss scaling.
 
 ### 1.1 Phase I: Base Generation and Stabilization
@@ -43,6 +45,10 @@ To substantiate the efficacy of the semantic-balanced batching paradigm, M-SB-GR
 - **Training Corpus:** The model is optimized on `combined_train.parquet`, a curated dataset of mathematical propositions and verified deductive solutions.
 - **Evaluation Benchmarks:** Generalization and reasoning capacities are evaluated on standardized benchmarks including **MATH-500**, **GSM8K**, **AIME 2024/2025**, and **OlympiadBench**.
 - **Metrics:** Model efficacy is quantified through automated Pass@k metrics (specifically Pass@1, Pass@2, Pass@4, and Pass@8).
+
+### Evaluation Results
+
+![Experimental Results: Math Delta Chart](paper/math_delta_chart_combined.png)
 
 ---
 
