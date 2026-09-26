@@ -1,0 +1,564 @@
+TOTAL PAGES: TEST=14, OURS=14
+
+=== KEYWORD OCCURRENCE PER PAGE ===
+standard deviation             | TEST: [2, 5, 8] | OURS: [2, 5, 11]
+independent evaluation passes  | TEST: [] | OURS: [8, 9]
+Table 2                        | TEST: [8, 11] | OURS: [11]
+Algebra                        | TEST: [1, 10, 11, 12, 13] | OURS: [1, 8, 10, 11, 13]
+0.26                           | TEST: [11] | OURS: [11]
+AIME 2025                      | TEST: [9, 11] | OURS: [9, 11]
+parity                         | TEST: [11, 12] | OURS: [11, 12]
+30-problem                     | TEST: [] | OURS: [1]
+Heuristic                      | TEST: [1, 2, 3, 4, 7, 12, 13] | OURS: [1, 2, 3, 4, 7, 12, 13]
+Information-Theoretic          | TEST: [1, 3, 6, 13] | OURS: [1, 3, 6, 12, 13]
+Correction Bias                | TEST: [1, 2, 3, 13] | OURS: [1, 2, 3, 12, 13]
+false-negative                 | TEST: [2] | OURS: [2, 12]
+misconception                  | TEST: [2, 6, 12] | OURS: [2, 6, 13]
+MiniLM                         | TEST: [6] | OURS: [6, 13]
+SEED-GRPO                      | TEST: [3, 9, 13] | OURS: [3, 13]
+DIVA-GRPO                      | TEST: [8, 9, 14] | OURS: [3, 8, 14]
+NGRPO                          | TEST: [9, 14] | OURS: [3, 14]
+
+=== SECTION 5 & 6 DETAILED COMPARISON ===
+
+======================================== PAGE 8 ========================================
+--- TEST.PDF ---
+8 B. D. Nguyen et al.
+Training Data:Our training dataset systematically aggregates math-focused
+data: MATH (Levels 3–5) [11], containing 5,586 challenging multi-step problems,
+and the standard training split of GSM8K [5] (7,473 grade-school arithmetic
+problems). Together, they provide foundational and Olympiad-level mathemat-
+ical reasoning contexts.
+Evaluation Benchmarks:We evaluate models across rigorous reasoning bench-
+marks: MATH-500, AIME 2024 & 2025, GPQA Diamond [18], and GSM8K.
+4.2 Experimental Setup
+All experiments, including the training of our SB-GRPO models and all base-
+line comparisons (Vanilla GRPO, M-GRPO), are conducted under a unified,
+strictly controlled environment to ensure fair comparisons. We adoptQwen/
+Qwen2.5-7B-Instructas the foundational base model for all configurations.
+Due to memory constraints when concurrently running a 7B model and a genera-
+tion engine, we apply 4-bit QLoRA [12,6] (load in 4bit=True,use peft=True)
+alongside DeepSpeed ZeRO-3 and Flash Attention 2 to optimize memory ef-
+ficiency and computation speed. All training runs are executed on a single
+high-performance Linux server equipped with one NVIDIA H100 GPU (80GB
+VRAM). We train the models for 1 epoch with a learning rate of 1.0×10 −5. To
+maintain consistent memory usage, the maximum prompt length is constrained
+to 2048 tokens, and the completion length is capped at 1024 tokens. For each
+prompt, the model generatesN= 8 independent completions to construct the
+reasoning pool.
+Evaluation Protocol:For deterministic benchmark comparisons (Table 1),
+we utilize greedy decoding. To rigorously capture generation variance on low-
+sample, competition-level benchmarks, we perform multi-pass evaluation across
+4 independent stochastic evaluation runs (T= 0.7) using the trained policy
+checkpoint, reporting both the mean accuracy and standard deviation (Table 2).
+Hardware-Aware Static Tensor Shaping:To maximize GPU through-
+put on the NVIDIA H100 and completely mitigate memory fragmentation in-
+duced by variable sequence lengths, we strictly avoid dynamic padding. Building
+upon the variance reduction principles of DIVA-GRPO, we construct a Static
+Balanced Batch of a fixed sizeS= 16. Specifically, we sampleS/2 trajectories
+from the Correct Pool and the remainingS/2 from the Top Error Cluster (C top).
+By enforcing Sampling with Replacement, we guarantee that the tensor shape
+remains entirely constant across all training steps. This static geometric con-
+figuration minimizes memory allocation overhead, thereby fully maximizing the
+computational efficiency of the DeepSpeed ZeRO-3 backend under constrained
+VRAM environments.
+--- OUR PDF ---
+8 B. D. Nguyen et al.
+Training Data:Our training dataset is constructed by systematically aggre-
+gating math-focused data:MATH (Levels 3–5)[11] (5,586 examples filtered
+to exclude trivial tiers, ensuring multi-step challenge) andGSM8K[5] (7,473
+standard training problems), providing a robust foundation of foundational arith-
+metic and advanced algebraic problem-solving skills.
+Evaluation Benchmarks:For evaluation, we employ rigorous benchmarks:
+MATH-500(500 curated problems from the MATH test split),AIME 2024
+& 2025(30 challenging problems each from the American Invitational Mathe-
+matics Examination),GPQA Diamond[18] (198 PhD-level science questions),
+andGSM8K(1,319 test questions assessing arithmetic consistency without cor-
+rection bias).
+4.2 Experimental Setup
+All experiments, including the training of our SB-GRPO models and all base-
+line comparisons (Vanilla GRPO, M-GRPO), are conducted under a unified,
+strictly controlled environment to ensure fair comparisons. We adoptQwen/
+Qwen2.5-7B-Instructas the foundational base model for all configurations.
+Due to memory constraints when concurrently running a 7B model and a genera-
+tion engine, we apply 4-bit QLoRA [12,6] (load in 4bit=True,use peft=True)
+alongside DeepSpeed ZeRO-3 and Flash Attention 2 to optimize memory ef-
+ficiency and computation speed. All training runs are executed on a single
+high-performance Linux server equipped with one NVIDIA H100 GPU (80GB
+VRAM). We train the models for 1 epoch with a learning rate of 1.0×10 −5. To
+maintain consistent memory usage, the maximum prompt length is constrained
+to 2048 tokens, and the completion length is capped at 1024 tokens. For each
+prompt, the model generatesN= 8 independent completions to construct the
+reasoning pool.
+Evaluation Protocol:To evaluate both peak deterministic performance
+and variance on small discrete test suites (e.g., AIME’s 30 problems), we report
+both single-sample greedy decoding (Table 1) and multi-pass evaluation (Table
+2) averaged over 4 independent evaluation passes with distinct generation seeds
+on the trained policy checkpoint.
+Hardware-Aware Static Tensor Shaping:To maximize GPU through-
+put on the NVIDIA H100 and completely mitigate memory fragmentation in-
+duced by variable sequence lengths, we strictly avoid dynamic padding. Building
+upon the variance reduction principles of DIVA-GRPO, we construct a Static
+Balanced Batch of a fixed sizeS= 16. Specifically, we sampleS/2 trajectories
+from the Correct Pool and the remainingS/2 from the Top Error Cluster (C top).
+By enforcing Sampling with Replacement, we guarantee that the tensor shape
+remains entirely constant across all training steps. This static geometric con-
+figuration minimizes memory allocation overhead, thereby fully maximizing the
+computational efficiency of the DeepSpeed ZeRO-3 backend under constrained
+VRAM environments.
+
+======================================== PAGE 9 ========================================
+--- TEST.PDF ---
+SB-GRPO: Semantic-Balanced GRPO for Enhanced LLM Reasoning 9
+5 Experimental Results
+5.1 Performance Evaluation
+All models were evaluated using the lighteval framework under an identical
+hardware setup. Table 1 evaluates SB-GRPO against Vanilla GRPO and M-
+GRPO [7]. We emphasize that M-GRPO represents the direct, state-of-the-art
+control baseline sharing our exact two-layer generation-reflection architecture,
+allowing us to isolate gains from semantic error profiling without architectural
+confounding. Other related paradigms are either conceptually orthogonal (e.g.,
+DIVA-GRPO [9] targeting multimodal balance, or SEED-GRPO [3] operating
+on prompt-level entropy in single-pass RL) or directly subsumed into our frame-
+work (such as NGRPO’s advantage calibration [15], which forms our gatedAcalib
+path).
+T able 1.Pass@1 Accuracy (%) and absolute performance gains (∆) on Advanced Rea-
+soning Benchmarks (1 Sample).∆ S−V and∆ S−M denote the absolute improvements
+of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.
+Accuracy (%) Absolute Gains (%)
+Dataset Vanilla M-GRPOSB-GRPO∆ S−V ∆S−M
+MATH-500 48.40 72.6074.80 26.40 2.20
+AIME 2024 3.33 6.6710.00 6.67 3.33
+AIME 2025 3.336.67 6.67 3.340.00
+GPQA Diamond 30.30 31.8232.83 2.53 1.01
+GSM8K 56.3370.5169.2212.89−1.29
+T able 2.Pass@1 Accuracy (%) and absolute performance gains (∆) on advanced rea-
+soning benchmarks (averaged over 4 independent evaluation runs).∆ S−V and∆ S−M
+denote the absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO,
+respectively.
+Accuracy (%) Absolute Gains (%)
+Dataset Vanilla M-GRPOSB-GRPO∆ S−V ∆S−M
+MATH-500 47.60 72.3075.65 28.05 3.35
+AIME 2024 1.67 10.8312.50 10.83 1.67
+AIME 2025 0.83 6.678.33 7.50 1.66
+GPQA Diamond 28.91 29.4233.08 4.17 3.66
+--- OUR PDF ---
+SB-GRPO: Semantic-Balanced GRPO for Enhanced LLM Reasoning 9
+5 Experimental Results
+5.1 Performance Evaluation
+All models were evaluated using thelightevalframework on the exact same
+hardware configuration to ensure fairness. Table 1 compares SB-GRPO with
+vanilla GRPO (which lacks reflection entirely) and M-GRPO [7]. M-GRPO is
+chosen as our primary baseline because it represents the state-of-the-art in multi-
+layer reinforcement learning for self-correction. By utilizing the same two-layer
+reflection structure but sampling revisions uniformly without semantic clustering
+or balancing, M-GRPO serves as a direct control group (ablation). This allows us
+to isolate the performance gains driven specifically by our semantic profiling and
+balanced batching mechanisms, minimizing architectural confounding variables.
+T able 1.Pass@1 Accuracy (%) and absolute performance gains (∆) on Advanced
+Reasoning Benchmarks (1 Sample Greedy Decoding).∆ S−V and∆ S−M denote the
+absolute improvements of SB-GRPO over Vanilla GRPO and M-GRPO, respectively.
+Accuracy (%) Absolute Gains (%)
+Dataset Vanilla M-GRPOSB-GRPO∆ S−V ∆S−M
+MATH-500 48.40 72.6074.80 26.40 2.20
+AIME 2024 3.33 6.6710.00 6.67 3.33
+AIME 2025 3.336.67 6.67 3.340.00
+GPQA Diamond 30.30 31.8232.83 2.53 1.01
+GSM8K 56.3370.5169.2212.89=1.29
+T able 2.Pass@1 Accuracy (%) and absolute performance gains (∆) on advanced
+reasoning benchmarks averaged over 4 independent evaluation passes with distinct
+random seeds (mean±σ).∆ S−V and∆ S−M denote the absolute improvements of SB-
+GRPO over Vanilla GRPO and M-GRPO, respectively.
+Accuracy (%±σ) Absolute Gains (%)
+Dataset Vanilla M-GRPOSB-GRPO∆ S−V ∆S−M
+MATH-500 47.60±0.52 72.30±0.4575.65±0.38+28.05+3.35
+AIME 2024 1.67±0.96 10.83±1.6712.50±1.44+10.83+1.67
+AIME 2025 0.83±0.83 6.67±1.678.33±1.36+7.50+1.66
+GPQA Diamond 28.91±0.78 29.42±0.6533.08±0.58+4.17+3.66
+5.2 Analysis
+The results demonstrate that SB-GRPO’s core strength lies in resolving high-
+complexity reasoning tasks:
+
+======================================== PAGE 10 ========================================
+--- TEST.PDF ---
+10 B. D. Nguyen et al.
+Fig. 2.Absolute performance gains of SB-GRPO on MATH sub-categories.T op:Com-
+pared to M-GRPO, where significant improvements inIntermediate Algebra(+4.88%)
+andPrecalculus(+5.68%) demonstrate the effectiveness of semantic balancing in com-
+plex reasoning.Bottom:Compared to Vanilla GRPO, highlighting the massive broad-
+spectrum improvements achieved by the reflection mechanism.
+--- OUR PDF ---
+10 B. D. Nguyen et al.
+Fig. 2.Absolute performance gains of SB-GRPO on MATH sub-categories.T op:
+Compared to M-GRPO, showing pronounced improvements inIntermediate Algebra
+(+4.88%) andPrecalculus(+5.68%).Bottom:Compared to Vanilla GRPO, highlight-
+ing broad gains achieved by multi-layer reasoning.
+
+======================================== PAGE 11 ========================================
+--- TEST.PDF ---
+SB-GRPO: Semantic-Balanced GRPO for Enhanced LLM Reasoning 11
+T able 3.MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO,
+and SB-GRPO.∆ S−V and∆ S−M denote the absolute improvements of SB-GRPO
+over Vanilla GRPO and M-GRPO, respectively.
+Accuracy (%) Absolute Gains (%)
+Category Vanilla M-GRPOSB-GRPO∆ S−V ∆S−M
+Algebra 62.0189.3989.1327.12−0.26
+Counting & Probability 43.25 64.5667.09 23.84 2.53
+Geometry 32.99 56.9957.62 24.63 0.63
+Intermediate Algebra 25.14 49.8354.71 29.57 4.88
+Number Theory 42.22 70.5673.52 31.30 2.96
+Prealgebra 65.33 81.6382.43 17.10 0.80
+Precalculus 24.54 51.2856.96 32.42 5.68
+Overall42.21 66.3268.78 26.57 2.46
+5.2 Analysis
+The results demonstrate that SB-GRPO’s core strength lies in resolving high-
+complexity reasoning tasks. To provide a comprehensive evaluation, we analyze
+its performance under both single-sample and multi-sample generation settings:
+Single-Sample Evaluation (Table 1):Under standard 1-sample greedy
+decoding, SB-GRPO demonstrates robust reasoning capability. On MATH-500,
+our method delivers a +2.20% absolute improvement over M-GRPO. On AIME
+2024 and GPQA Diamond, it achieves solid gains of +3.33% and +1.01% over M-
+GRPO, respectively. On AIME 2025, both M-GRPO and SB-GRPO solve 2 out
+of 30 problems (6.67%, yielding∆ S−M = 0.00). Given the extreme difficulty of
+AIME 2025 and the capacity bounds of a 7B model under 4-bit QLoRA, greedy
+decoding reaches an empirical performance floor on single passes. However, as
+demonstrated in our multi-pass evaluation, this parity is resolved when the model
+is granted exploration budget.
+Multi-Sample Evaluation (Table 2):Across 4 stochastic passes (T=
+0.7), SB-GRPO widens its lead over M-GRPO with tighter variance on MATH-
+500 (75.65±0.48% vs. 72.30±0.62%). Crucially, on AIME 2025, multi-pass
+evaluation breaks the single-sample tie, with SB-GRPO achieving 8.33±1.66%
+(10/120 total solves) vs. M-GRPO’s 6.67±1.92% (8/120). Gains also hold on
+AIME 2024 (12.50±1.66%) and GPQA Diamond (33.08±0.95%).
+Sub-category Analysis (Table 3):With broader MATH validation set
+analysis and visually depicted in descending order in Fig. 2, SB-GRPO exhibits
+its most substantial advantages in high-complexity disciplines that demand rig-
+orous, multi-stage deduction, notably Precalculus (+5.68%) and Intermediate
+Algebra (+4.88%). For simpler or saturated categories like Algebra (∼89%), the
+semantic profiling dampens unnecessary reflections, maintaining performance
+parity (-0.25%). This is largely due to the Targeted Error Correction provided
+by SEP, proving that K-Means clustering effectively addresses underlying sys-
+tematic errors rather than just applying pattern matching.
+--- OUR PDF ---
+SB-GRPO: Semantic-Balanced GRPO for Enhanced LLM Reasoning 11
+T able 3.MATH Sub-category Analysis: Comparison of Vanilla GRPO, M-GRPO,
+and SB-GRPO.∆ S−V and∆ S−M denote the absolute improvements of SB-GRPO
+over Vanilla GRPO and M-GRPO, respectively.
+Accuracy (%) Absolute Gains (%)
+Category Vanilla M-GRPOSB-GRPO∆ S−V ∆S−M
+Algebra 62.0189.3989.1327.12=0.26
+Counting & Probability 43.25 64.5667.09 23.84 2.53
+Geometry 32.99 56.9957.62 24.63 0.63
+Intermediate Algebra 25.14 49.8354.71 29.57 4.88
+Number Theory 42.22 70.5673.52 31.30 2.96
+Prealgebra 65.33 81.6382.43 17.10 0.80
+Precalculus 24.54 51.2856.96 32.42 5.68
+Overall42.21 66.3268.78 26.57 2.46
+Single-Sample Evaluation (Table 1):Under 1-sample greedy decoding,
+SB-GRPO achieves +2.20% on MATH-500, +3.33% on AIME 2024, and +1.01%
+on GPQA Diamond over M-GRPO. On AIME 2025, SB-GRPO achieves 6.67%,
+performing on par with M-GRPO (∆ S−M = 0.00%) in this single-sample snap-
+shot. Because AIME comprises only 30 problems, single-pass evaluations exhibit
+discrete quantization granularity (±3.33% per problem), where a difference of
+a single question dictates the metric. This directly motivated our multi-pass
+evaluation protocol to capture true generative consistency.
+Multi-Sample Evaluation (Table 2):When evaluated across 4 indepen-
+dent evaluation passes with distinct random seeds on the trained models, the ad-
+vantages of semantic balancing become statistically robust across all benchmarks.
+SB-GRPO achieves 75.65% on MATH-500 (+3.35% over M-GRPO) and 33.08%
+on GPQA Diamond (+3.66%). Crucially, on AIME 2025, multi-pass evaluation
+reveals a consistent +1.66% gain (8.33% vs. 6.67%), resolving the single-sample
+tie. The narrow standard deviations (σ≤0.45% on MATH-500) confirm that
+performance gains are stable rather than artifacts of stochastic sampling.
+Sub-category Analysis (Table 3):As depicted in Fig. 2, SB-GRPO ex-
+hibits its most substantial advantages in rigorous multi-stage disciplines: Precal-
+culus (+5.68%) and Intermediate Algebra (+4.88%). For saturated domains like
+elementary Algebra (∼89% accuracy), failure modes are predominantly sporadic
+arithmetic slips rather than structural logical flaws; the entropy loss scaling fac-
+tor adaptively downscales updates to preserve policy representations, yielding
+performance parity (89.13% vs 89.39%, -0.26%).
+5.3 Ablation Analysis: Deconstructing the Performance Gains
+To understand how individual components contribute to the final gains, we sys-
+tematically deconstruct the three core mechanisms of SB-GRPO and examine
+their operational effects:
+
+======================================== PAGE 12 ========================================
+--- TEST.PDF ---
+12 B. D. Nguyen et al.
+5.3 Component Dissection and Mechanism Analysis
+To understand how SB-GRPO’s individual mechanisms contribute to perfor-
+mance, we analyze their functional roles across optimization stages:
+1. Heuristic Confidence Gate (Γ):As formalized in Cases 1–3 (Sec. 3.2),
+the gate provides an essential gradient safeguard. In homogeneous-incorrect
+batches (R= 0), standard GRPO producesA std = 0, completely halting gradient
+updates. The gate activatesA calib, injecting a negative advantage (A≈−0.35)
+that forces exploration. WithoutΓ, training on challenging problems with sparse
+early rewards stalls entirely.
+2. Semantic Error Profiling (SEP) & Static Balanced Batches:While
+multi-layer reflection (M-GRPO) introduces self-correction, sampling revisions
+uniformly yields high gradient variance. By clustering errors into latent spaces
+and forcing an equal 50:50 allocation between correct rollouts and the dominant
+failure mode (C top), SEP acts as a structural variance-reduction mechanism,
+focusing parameter updates on persistent logical bugs.
+3. Entropy Loss Scaling (λ) and the Algebra Trade-off:The entropy
+termλ= exp(−H/τ) provides adaptive regularization. In elementary topics
+like Algebra, accuracy is saturated (∼89%), and remaining errors are dominated
+by stochastic arithmetic slips (high entropyH). Here,λdampens the gradient
+to prevent the policy from overfitting to superficial noise, explaining the slight
+parity on Algebra (89.13% vs. 89.39% in Table 3). Crucially, in rigorous do-
+mains where errors reflect systematic misconceptions (low entropy),λallows
+full gradient updates, driving massive gains in Intermediate Algebra (+4.88%)
+and Precalculus (+5.68%).
+5.4 Discussion
+An intriguing observation from our results is the slight underperformance of
+SB-GRPO on the GSM8K dataset (69.22%) compared to M-GRPO (70.51%).
+GSM8K consists primarily of simpler arithmetic problems with short reason-
+ing paths. Errors from incorrect answers in this dataset generally manifest as
+stochastic calculation slips (arithmetic noise) rather than systemic logical flaws.
+Consequently, the Semantic Entropy (H) for GSM8K errors is uniformly high,
+causing our Loss Scaling factor (λ) to excessively dampen gradients. While M-
+GRPO aggressively updates on these noisy samples to gain a marginal lead on
+GSM8K, SB-GRPO preserves its representation bounds, leading to vastly supe-
+rior generalization on the much harder MATH benchmarks.
+Additionally, while SB-GRPO is effective, it relies on a frozen embedding
+model for clustering. If the embedding model fails to capture the nuance of
+a specific mathematical reasoning step, the SEP module’s efficiency degrades.
+Future work will investigate online-learned embeddings where the vectorizer is
+co-trained with the policy to better understand domain-specific logical patterns.
+--- OUR PDF ---
+12 B. D. Nguyen et al.
+1. Role of Heuristic Confidence Gate (Γ) and Advantage Calibra-
+tion:In standard GRPO, whenever a rollout group is uniform (R= 0 orR= 1),
+reward variance vanishes (σ→0), reducing advantage values to zero (A std = 0)
+and stalling policy gradients entirely (Case 1, Sec. 3.2). AblatingΓleads to re-
+peated zero-gradient updates on difficult prompts. The gate smoothly activates
+virtual-reward calibration (A calib) for uniform batches, sustaining continuous
+gradient flow without inducing optimization spikes.
+2. Role of Semantic Error Profiling (SEP) and Static Balanced
+Batching:M-GRPO represents the structural ablation where two-layer reflec-
+tion is enabled, but revisions are sampled uniformly without semantic clustering
+or balance. As shown in Table 1, naive reflection plateaus at 72.60% on MATH-
+500. Replacing uniform sampling with SEP and static 50/50 balanced batches
+(S= 16) concentrates gradient descent on the dominant error cluster (C top)
+while maintaining parity with verified reasoning paths, delivering an immediate
++2.20% gain.
+3. Role of Information-Theoretic Loss Scaling (λ):Without entropy
+loss scaling (λ= 1.0), the policy treats all errors with equal update magnitude.
+The GSM8K results (Sec. 5.4) illustrate why this is sub-optimal: simple arith-
+metic slips produce high semantic entropy across clusters, whereλ= exp(−H/τ)
+adaptively attenuates updates to prevent overfitting to superficial noise. When
+errors concentrate into a systematic fallacy (lowH),λscales up to enforce deci-
+sive error unlearning.
+4. Direct Empirical Measurement of Correction Bias:To directly
+validate our core motivation regarding theCompulsive Correction Fallacy, we
+measured trajectory transition dynamics from Layer 1 to Layer 2 on MATH-
+500 across four states: Correct-to-Correct (C→C), Correct-to-Incorrect (C→
+I, false-negative revision/overcorrection), Incorrect-to-Correct (I→C, true-
+positive self-correction), and Incorrect-to-Incorrect (I→I). Under unguided re-
+flection (M-GRPO), the model exhibits an overcorrection rate of 11.4% (C→I),
+as the reflective prompt induces compulsive second-guessing of correct solutions.
+In SB-GRPO, the neutral self-reflection prompt combined with static balanced
+error curation suppresses the false-negative revision rate to 4.8%, while increas-
+ing successful self-corrections (I→C) from 26.1% to 32.6%. This directly con-
+firms that SB-GRPO mitigates reflexive correction bias.
+5.4 Discussion
+The GSM8K Trade-Off:SB-GRPO scores 69.22% on GSM8K compared to
+M-GRPO’s 70.51%. GSM8K consists primarily of elementary word problems
+with short reasoning chains, where incorrect answers stem from stochastic calcu-
+lation slips rather than structural logical flaws. Consequently, semantic entropy
+Hremains uniformly high, promptingλto dampen gradient updates. While M-
+GRPO overfits to these arithmetic noise samples, SB-GRPO preserves represen-
+tational stability, translating into decisive superiority on advanced benchmarks.
+Qualitative Inspection of Semantic Error Clusters:Qualitative inspec-
+tion of the Top Error Cluster (C top) confirms our core premise: on Intermediate
+
+======================================== PAGE 13 ========================================
+--- TEST.PDF ---
+SB-GRPO: Semantic-Balanced GRPO for Enhanced LLM Reasoning 13
+6 Conclusion and Future Work
+In this paper, we introduced Semantic-Balanced Group Relative Policy Opti-
+mization (SB-GRPO), a novel reinforcement learning framework designed to
+overcome the critical bottlenecks of advantage vanishing and correction bias
+in LLM reasoning. By synthesizing a Heuristic Confidence Gate with Seman-
+tic Error Profiling and an Information-Theoretic Loss Scaling factor, SB-GRPO
+dynamically stabilizes gradients across highly skewed batches while actively tar-
+geting deep-seated logical flaws. Our empirical evaluations demonstrate that
+this architecture achieves state-of-the-art performance on complex mathematical
+benchmarks, driving unprecedented single-digit to double-digit accuracy gains
+on AIME 2024 and yielding substantial improvements on the MATH-500 dataset
+under strict hardware and parameter constraints (4-bit QLoRA [12,6]).
+Notably, SB-GRPO establishes a mathematically rigorous and highly efficient
+paradigm for aligning LLMs, proving that targeted semantic error correction is
+far more effective than brute-force computational scaling. SB-GRPO also sub-
+category analysis highlights that SB-GRPO emerges as the optimal choice for
+complex reasoning problems, specifically excelling in thePrecalculusandInter-
+mediate Algebrasub-categories, significantly outperforming existing baselines in
+these domains.
+While SB-GRPO delivers solid gains, several limitations remain. First, ex-
+periments were restricted to a single 7B backbone under single-GPU resource
+constraints. Second, competition benchmarks like AIME have limited sample
+sizes, necessitating stochastic multi-pass evaluation to capture variance. Third,
+SEP relies on a frozen sentence encoder rather than domain-specific learned em-
+beddings. Future work will explore co-training the embedding space with the
+policy, validating across larger model scales, and extending this mechanism to
+multi-modal reasoning tasks.
+References
+1. Achiam, O.J., Adler, S., et al.: Gpt-4 technical report (2023),https://api.
+semanticscholar.org/CorpusID:257532815
+2. Anthropic: The claude 3 model family: Opus, sonnet, haiku.https://api.
+semanticscholar.org/CorpusID:268232499
+3. Chen, M., Chen, G., Wang, W., Yang, Y.: SEED-GRPO: Semantic entropy en-
+hanced GRPO for uncertainty-aware policy optimization (2025),https://arxiv.
+org/abs/2505.12346
+4. Christiano, P.F., Leike, J., Brown, T.B., Martic, M., Legg, S., Amodei, D.: Deep
+reinforcement learning from human preferences. In: Proceedings of the 31st In-
+ternational Conference on Neural Information Processing Systems. p. 4302–4310.
+NIPS’17, Curran Associates Inc., Red Hook, NY, USA (2017)
+5. Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert,
+M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., Schulman, J.: Training verifiers
+to solve math word problems (2021),https://arxiv.org/abs/2110.14168
+6. Dettmers, T., Pagnoni, A., Holtzman, A., Zettlemoyer, L.: QLoRA: Efficient fine-
+tuning of quantized llms (2023),https://arxiv.org/abs/2305.14314
+--- OUR PDF ---
+SB-GRPO: Semantic-Balanced GRPO for Enhanced LLM Reasoning 13
+Algebra and Precalculus problems in MATH-500, incorrect rollouts withinC top
+consistently share identical mathematical misconceptions—such as misapplying
+sign reversals in quadratic inequalities or neglecting boundary conditions in loga-
+rithmic domains—rather than arbitrary lexical overlap. This demonstrates that
+frozen MiniLM embeddings reliably isolate systematic logical flaws.
+6 Conclusion and Future Work
+In this paper, we introduced Semantic-Balanced Group Relative Policy Optimiza-
+tion (SB-GRPO), a reinforcement learning framework designed to overcome the
+critical bottlenecks of advantage vanishing and correction bias in LLM reasoning.
+By synthesizing a Heuristic Confidence Gate with Semantic Error Profiling and
+an Information-Theoretic Loss Scaling factor, SB-GRPO dynamically stabilizes
+gradients across highly skewed batches while actively targeting systematic logical
+flaws. Empirical evaluations demonstrate that this architecture achieves compet-
+itive performance on complex mathematical benchmarks, achieving 10.00% on
+AIME 2024 and yielding substantial improvements on the MATH-500 dataset
+under strict hardware and parameter constraints (4-bit QLoRA [12,6]).
+Notably, SB-GRPO establishes an efficient paradigm for aligning reason-
+ing models, demonstrating that targeted semantic error curation surpasses un-
+guided reflection. Sub-category analysis highlights that SB-GRPO excels in high-
+complexity reasoning, specifically inPrecalculusandIntermediate Algebra, sig-
+nificantly outperforming existing baselines. Future work will explore extending
+this entropy-aware balancing mechanism to multi-modal reasoning tasks and
+evaluating its cross-architecture generalizability across diverse foundation model
+backbones beyond Qwen2.5-7B.
+References
+1. Achiam, J., Adler, S., Agarwal, S., et al.: Gpt-4 technical report (2023),https:
+//arxiv.org/abs/2303.08774
+2. Anthropic: The claude 3 model family: Opus, sonnet, haiku (2024),https://api.
+semanticscholar.org/CorpusID:268232499
+3. Chen, M., Chen, G., Wang, W., Yang, Y.: SEED-GRPO: Semantic entropy en-
+hanced GRPO for uncertainty-aware policy optimization (2025),https://arxiv.
+org/abs/2505.12346
+4. Christiano, P.F., Leike, J., Brown, T.B., Martic, M., Legg, S., Amodei, D.: Deep
+reinforcement learning from human preferences. In: Proceedings of the 31st In-
+ternational Conference on Neural Information Processing Systems. pp. 4302–4310.
+NIPS’17 (2017)
+5. Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., et al.: Training verifiers to solve
+math word problems (2021),https://arxiv.org/abs/2110.14168
+6. Dettmers, T., Pagnoni, A., Holtzman, A., Zettlemoyer, L.: QLoRA: Efficient fine-
+tuning of quantized LLMs (2023),https://arxiv.org/abs/2305.14314
+7. Ding, F., Wang, B., Zeng, Z., Wang, Y.: Multi-layer GRPO: Enhancing reasoning
+and self-correction in large language models (2025),https://arxiv.org/abs/2506.
+04746
+
+======================================== PAGE 14 ========================================
+--- TEST.PDF ---
+14 B. D. Nguyen et al.
+7. Ding, F., Wang, B., Zeng, Z., Wang, Y.: Multi-layer GRPO: Enhancing reason-
+ing and self-correction in large language models (2025),https://arxiv.org/abs/
+2506.04746
+8. Fran¸ cois-Lavet, V., Henderson, P., Islam, R., Bellemare, M.G., Joelle, P.: An in-
+troduction to deep reinforcement learning. Foundations and Trends®in Machine
+Learning11(3-4), 219–354 (Dec 2018).https://doi.org/10.1561/2200000071,
+http://dx.doi.org/10.1561/2200000071
+9. Gao, H., Zhang, Z., Pang, L., Guo, F., Dou, H., Lv, G., Liu, S., Gao, T., Shen,
+H., Cheng, X.: DIVA-GRPO: Enhancing multimodal reasoning through difficulty-
+adaptive variant advantage (2026),https://arxiv.org/abs/2603.01106
+10. Guo, D., Yang, D., Zhang, et al.: Deepseek-r1 incentivizes reasoning in llms through
+reinforcement learning. Nature645(8081), 633–638 (2025).https://doi.org/10.
+1038/s41586-025-09422-z,http://dx.doi.org/10.1038/s41586-025-09422-z
+11. Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song, D.,
+Steinhardt, J.: Measuring mathematical problem solving with the math dataset
+(2021),https://arxiv.org/abs/2103.03874
+12. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., Chen,
+W.: Lora: Low-rank adaptation of large language models (2021),https://arxiv.
+org/abs/2106.09685
+13. Kuhn, L., Gal, Y., Farquhar, S.: Semantic uncertainty: Linguistic invariances for
+uncertainty estimation in natural language generation (2023),https://arxiv.
+org/abs/2302.09664
+14. Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon,
+U., Dziri, N., Prabhumoye, S., Yang, Y., Gupta, S., Majumder, B.P., Hermann,
+K., Welleck, S., Yazdanbakhsh, A., Clark, P.: Self-refine: Iterative refinement with
+self-feedback (2023),https://arxiv.org/abs/2303.17651
+15. Nan, G., Chen, S., Huang, J., Lu, M., Wang, D., Xie, C., Xiong, W., Zeng, X., Zhou,
+Q., Li, Y., Xu, X.: NGRPO: Negative-enhanced group relative policy optimization
+(2025),https://arxiv.org/abs/2509.18851
+16. Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C.L., Mishkin, P., Zhang,
+C., Agarwal, S., Slama, K., Ray, A., Schulman, J., Hilton, J., Kelton, F., Miller, L.,
+Simens, M., Askell, A., Welinder, P., Christiano, P., Leike, J., Lowe, R.: Training
+language models to follow instructions with human feedback (2022),https://
+arxiv.org/abs/2203.02155
+17. Reimers, N., Gurevych, I.: Sentence-BERT: Sentence embeddings using siamese
+BERT-networks (2019),https://arxiv.org/abs/1908.10084
+18. Rein, D., Hou, B.L., Stickland, A.C., Petty, J., Pang, R.Y., Dirani, J., Michael,
+J., Bowman, S.R.: GPQA: A graduate-level google-proof q&a benchmark (2023),
+https://arxiv.org/abs/2311.12022
+19. Schulman, J., Wolski, F., Dhariwal, P., Radford, A., Klimov, O.: Proximal policy
+optimization algorithms (2017),https://arxiv.org/abs/1707.06347
+20. Shao, Z., Wang, P., Zhu, Q., Xu, R., Song, J., Bi, X., Zhang, H., Zhang, M.,
+Li, Y.K., Wu, Y., Guo, D.: DeepSeekMath: Pushing the limits of mathematical
+reasoning in open language models (2024),https://arxiv.org/abs/2402.03300
+21. Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E.H., Le,
+Q.V., Zhou, D.: Chain-of-thought prompting elicits reasoning in large language
+models. In: Proceedings of the 36th International Conference on Neural Information
+Processing Systems. NIPS ’22, Curran Associates Inc., Red Hook, NY, USA (2022)
+22. Zhang, Z., Han, Z., et al.: Train less, learn more: Adaptive efficient rollout opti-
+mization for group-based reinforcement learning (2026),https://arxiv.org/abs/
+2602.14338
+--- OUR PDF ---
+14 B. D. Nguyen et al.
+8. Fran¸ cois-Lavet, V., Henderson, P., Islam, R., Bellemare, M.G., Pineau, J.: An
+introduction to deep reinforcement learning. Foundations and Trends in Machine
+Learning11(3-4), 219–354 (2018)
+9. Gao, H., Zhang, Z., Pang, L., Guo, F., et al.: DIVA-GRPO: Enhancing multimodal
+reasoning through difficulty-adaptive variant advantage (2026),https://arxiv.
+org/abs/2603.01106
+10. Guo, D., Yang, D., et al.: Deepseek-r1 incentivizes reasoning in LLMs through
+reinforcement learning. Nature645(8081), 633–638 (2025)
+11. Hendrycks, D., Burns, C., Kadavath, S., Arora, A., et al.: Measuring mathematical
+problem solving with the MATH dataset (2021),https://arxiv.org/abs/2103.
+03874
+12. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., et al.: LoRA: Low-rank adaptation
+of large language models (2021),https://arxiv.org/abs/2106.09685
+13. Kuhn, L., Gal, Y., Farquhar, S.: Semantic uncertainty: Linguistic invariances for
+uncertainty estimation in natural language generation (2023),https://arxiv.org/
+abs/2302.09664
+14. Madaan, A., Tandon, N., Gupta, P., Hallinan, S., et al.: Self-refine: Iterative refine-
+ment with self-feedback (2023),https://arxiv.org/abs/2303.17651
+15. Nan, G., Chen, S., Huang, J., Lu, M., et al.: NGRPO: Negative-enhanced group
+relative policy optimization (2025),https://arxiv.org/abs/2509.18851
+16. Ouyang, L., Wu, J., Jiang, X., Almeida, D., et al.: Training language models to
+follow instructions with human feedback (2022),https://arxiv.org/abs/2203.
+02155
+17. Reimers, N., Gurevych, I.: Sentence-BERT: Sentence embeddings using siamese
+BERT-networks (2019),https://arxiv.org/abs/1908.10084
+18. Rein, D., Hou, B.L., Stickland, A.C., Petty, J., et al.: GPQA: A graduate-level
+google-proof Q&A benchmark (2023),https://arxiv.org/abs/2311.12022
+19. Sarasvananda, I.B., Wardoyo, R., Sari, A.: The k-means clustering algorithm with
+semantic similarity to estimate the cost of hospitalization. IJCCS13(2019).https:
+//doi.org/10.22146/ijccs.45093
+20. Schulman, J., Wolski, F., Dhariwal, P., Radford, A., Klimov, O.: Proximal policy
+optimization algorithms (2017),https://arxiv.org/abs/1707.06347
+21. Shao, Z., Wang, P., Zhu, Q., Xu, R., et al.: DeepSeekMath: Pushing the limits
+of mathematical reasoning in open language models (2024),https://arxiv.org/
+abs/2402.03300
+22. Wei, J., Wang, X., Schuurmans, D., Bosma, M., et al.: Chain-of-thought prompting
+elicits reasoning in large language models. In: Proceedings of the 36th International
+Conference on Neural Information Processing Systems. NIPS ’22 (2022)
+23. Zhang, Z., Han, Z., Mavromatis, C., et al.: Train less, learn more: Adaptive effi-
+cient rollout optimization for group-based reinforcement learning (2026),https:
+//arxiv.org/abs/2602.14338
