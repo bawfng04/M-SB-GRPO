@@ -25,11 +25,17 @@
     urlcolor=blue    % Màu cho các đường link website
 }
 
+\setlength{\textfloatsep}{8pt plus 1pt minus 2pt}
+\setlength{\floatsep}{6pt plus 1pt minus 1pt}
+\setlength{\intextsep}{6pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+
 % compact bibliography formatting to prevent page overflow
 \let\oldthebibliography\thebibliography
 \renewcommand{\thebibliography}[1]{%
   \oldthebibliography{#1}%
-  \small
+  \footnotesize
   \setlength{\itemsep}{0pt plus 0.1ex}%
   \setlength{\parskip}{0pt}%
 }
